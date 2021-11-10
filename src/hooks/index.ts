@@ -1,7 +1,1 @@
-
-import { apis } from 'src/apiStore'
-
-export const useApis = () => {
-	return apis
-}
-
+export { default as useApiSelector } from './useApiSelector'
