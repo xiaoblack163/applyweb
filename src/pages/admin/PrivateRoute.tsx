@@ -15,7 +15,7 @@ const PrimaryLayout: React.FC<any> = ({ children, ...rest}) => {
         if (!TokenServeice.isAuthenticated()) {
             return (
                 <Redirect
-                    to={`/user/login?path=${location.pathname}`}
+                    to={`/admin/1/login?path=${location.pathname}`}
                 />
             )
         }

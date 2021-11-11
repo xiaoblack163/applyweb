@@ -1,19 +1,16 @@
 import { IConfiguration } from '@friday/core'
 
-const { protocol } = document.location
+import { upstreams, BaseUrl } from './constants'
+
+import combineUrl from './combineUrl'
 
 const configuration: IConfiguration = {
-	whiteHosts: ['localhost:3000'],
+	whiteHosts: [
+		'localhost:3000',
+	],
 	publicUrl: {
-		baseUrl: 'http://localhost:3000/mock/8/test'
-	},
-	router: {
-		baseName: 'app'
-	},
-	// sentry: {
-	// 	dsn: 'dns',
-	// 	environment: process.env.NODE_ENV
-	// }
+		OPEN_API_URL: combineUrl(upstreams.development.OPEN_API_URL, BaseUrl.OPEN_API_URL),
+	}
 }
 
 export default configuration
