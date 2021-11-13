@@ -17,7 +17,7 @@ const useUserInfo = () => {
 
 	// 获取用户信息
 	const fetchUserInfo = async () => {
-		const { dataJson, error } = await dispatchAsync(apis.home.getTest({}))
+		const { dataJson, error } = await dispatchAsync(apis.user.fetchUserInfo({}))
 		if (error) return
 		dispatchUserInfo(dataJson)
 	}

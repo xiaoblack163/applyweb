@@ -11,7 +11,6 @@ const PrimaryLayout: React.FC<any> = ({ children, ...rest}) => {
     const renderFn = useCallback((renderProps: RouteComponentProps<any>) => {
         
         const { component: Component } = rest
-
         if (!TokenServeice.isAuthenticated()) {
             return (
                 <Redirect

@@ -1,6 +1,8 @@
-import React from 'react'
-import { Form, Input, Button, Row, Col} from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import React, {useState} from 'react'
+import { Form, Input, Button, Row, Col, message} from 'antd'
+import { Link, useHistory  } from '@friday/router'
+import { useApiSelector } from 'src/hooks'
+import { dispatchAsync } from '@friday/async'
 import './index.less'
 
 const FormItem = Form.Item
@@ -8,6 +10,45 @@ const FormItem = Form.Item
 const Index = () => {
 
     const [form] = Form.useForm()
+    const apis = useApiSelector()
+
+    const [time, setTime] = useState(60)
+    const [isShowCode, setIsShowCode] = useState<boolean>(false)
+    const history = useHistory()
+
+    const sendCode = async () => {
+        const fileds = await form.validateFields(['phone'])
+        if (isShowCode) {
+            return 
+        }
+        setIsShowCode(true)
+        const active = setInterval(() => {
+            setTime((preSecond) => {
+              if (preSecond <= 1) {
+                setIsShowCode(false)
+                clearInterval(active)
+                // 重置秒数
+                return 60
+              }
+              return preSecond - 1
+            })
+        }, 1000)
+        const { phone } = fileds
+        const { error, data } = await dispatchAsync(apis.user.sendCode({
+            phone,
+            type: 1
+        }))
+        if (error) return message.error(error)
+        message.success('发送成功')
+    }
+
+    const onFinish = async () => {
+        const values = await form.validateFields()
+        const respone = await dispatchAsync(apis.user.reset(values)) as any
+        if (respone.error) return 
+        message.success('重置成功')
+        history.push('/user')
+    } 
 
     return (
         <div className='m-login'>
@@ -16,25 +57,35 @@ const Index = () => {
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>
-                    <Form form={form}>
-                        <FormItem name='phone'>
-                            <Input prefix={<UserOutlined />} placeholder="请输入您的手机号！" size='large' />
+                    <Form form={form}
+                        labelCol={{ span: 5 }}
+                        onFinish={onFinish}
+                    >
+                        <FormItem name='phone' label='手机号'>
+                            <Input  placeholder="请输入您的手机号！" size='middle' />
                         </FormItem>
-                        <FormItem name='password' style={{marginBottom: 8}}>
-                            <Input prefix={<LockOutlined />} type="password" placeholder="请输入您的手机号！" size='large' />
+                        <FormItem name='code' label='验证码'>
+                            <Input  
+                                placeholder="请输入您的验证码！" 
+                                size='middle' 
+                                maxLength={6}
+                                suffix={<a onClick={() => sendCode()}>
+                                  {isShowCode ? `${time}秒后重新发送` : '发送验证码'}
+                                </a>}
+                            />
                         </FormItem>
-                        <Row style={{marginBottom: 10}}>
-                            <Col span={12} className='tf operation'>已有账号，去登录</Col>
-                        </Row>
+                        <FormItem name='newPwd' label='新密码' >
+                            <Input type="password" placeholder="请输入您的新密码！" size='middle' />
+                        </FormItem>
                         <Form.Item>
                             <Button
                                 className="login-form-button"
                                 type="primary"
                                 htmlType="submit"
-                                size='large'
+                                size='middle'
                                 block
                             >
-                                注册
+                                确定
                             </Button>
                         </Form.Item>
                     </Form>

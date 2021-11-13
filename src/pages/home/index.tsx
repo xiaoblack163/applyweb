@@ -30,7 +30,13 @@ const Home = () => {
 						<a>组织机构</a>
 					</li>
 					<li>
-						<a>立即参赛</a>
+						<a href='/user'>立即参赛</a>
+					</li>
+					<li>
+						<a href='/admin/review/login'>评委入口</a>
+					</li>
+					<li>
+						<a href='/admin/manage/login'>管理员</a>
 					</li>
 				</ul>
 			</div>

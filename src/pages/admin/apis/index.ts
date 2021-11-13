@@ -3,10 +3,15 @@ import { createGetApi, createPostApi } from '@friday/async'
 
 export default class Apis {
 
-    private prefix_config = '/user'
+    private manage_config = '/manage'
+
+    private review_config = 'review'
 	
-	// 用户登录
-	public login = createGetApi({ url: `${this.prefix_config}/login`})
+	// 管理员登录
+	public manageLogin = createPostApi({ url: `${this.manage_config}/login`})
+
+    // 评审登录
+    public reviewLogin = createPostApi({ url: `${this.review_config}/login`})
 
 }
 

@@ -1,10 +1,10 @@
-import React from 'react'
+import React  from "react";
 
 
 const Index = () => {
     return (
         <div>
-            个人信息
+            待评分
         </div>
     )
 }

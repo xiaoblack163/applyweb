@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie'
 
-export const TOKEN_NAME = 'Ma_Token'
+export const TOKEN_NAME = 'Token'
 
 class TokenService<T extends string > {
 

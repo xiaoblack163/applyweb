@@ -1,6 +1,8 @@
 import React from 'react'
 import { Layout, Menu } from 'antd'
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { FileOutlined, FileDoneOutlined, LogoutOutlined } from '@ant-design/icons'
+import { Link } from '@friday/router'
+import useUserInfo from 'src/hooks/useUserInfo'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -8,6 +10,13 @@ import './index.less'
 
 
 const Index = ({children}) => {
+
+    const { userInfo } = useUserInfo()
+
+    const { type } = userInfo as any
+
+    console.log(type, '111')
+
     return (
         <Layout>
             <Sider
@@ -20,23 +29,45 @@ const Index = ({children}) => {
                     console.log(collapsed, type);
                 }}
             >
-                <div className="logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-                    <Menu.Item key="1" icon={<UserOutlined />}>
-                        nav 1
-                    </Menu.Item>
-                    <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                        nav 2
-                    </Menu.Item>
-                    <Menu.Item key="3" icon={<UploadOutlined />}>
-                        nav 3
-                    </Menu.Item>
-                    <Menu.Item key="4" icon={<UserOutlined />}>
-                        nav 4
+                <div className="m-logo" />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                    
+                    {type == 2 && 
+                        <Menu.Item key="1" icon={<FileOutlined />} >
+                            <Link to='/admin/reviewtreat'>
+                                待评审作品
+                            </Link>
+                        </Menu.Item>
+                    }
+                    {type == 2 && 
+                        <Menu.Item key="2" icon={<FileDoneOutlined />} >
+                            <Link to='/admin/reviewhas'>
+                            已评审作品
+                            </Link>
+                        </Menu.Item>
+                    }
+                    {type == 3 && 
+                        <Menu.Item key="3" icon={<FileOutlined />} >
+                            <Link to='/admin/managetreat'>
+                            待评分作品
+                            </Link>
+                        </Menu.Item>
+                    }
+                    {type ==3 && 
+                        <Menu.Item key="4" icon={<FileDoneOutlined />}>
+                            <Link to='/admin/managehas'>
+                            已评分作品
+                            </Link>
+                        </Menu.Item>
+                    }
+                    <Menu.Item key="5" icon={<LogoutOutlined />}>
+                        <Link to='/admin/review/login'> 
+                        退出登录
+                        </Link>
                     </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout>
+            <Layout style={{height: '100vh'}}>
                 <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '24px 16px 0' }}>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>

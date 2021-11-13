@@ -12,6 +12,7 @@ const PrimaryLayout: React.FC<any> = ({ children, ...rest}) => {
         
         const { component: Component } = rest
 
+
         if (!TokenServeice.isAuthenticated()) {
             return (
                 <Redirect

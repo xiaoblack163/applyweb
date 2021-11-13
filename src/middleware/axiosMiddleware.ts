@@ -71,7 +71,7 @@ export const axiosInstance = httpAxios(axiosConifg, {
 					message.error(text.message)
 				}
 			} else {
-				const notice = get(error, 'response.data.message') || '系统异常'
+				const notice = get(error, 'response.data.msg') || '系统异常'
 				errorNotice(notice, error.response)
 				console.error(error.response, 'system error')
 			}
