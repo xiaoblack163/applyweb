@@ -27,8 +27,14 @@ const Index = () => {
         if (respone.error) return 
         TokenService.set(respone?.token.token)
         dispatchUserInfo(respone.dataJson)
-        message.success('登录成功')
-        history.push('/user')
+        const { complete } = respone.dataJson
+        if (complete) {
+            message.success('登录成功')
+            history.push('/user')
+        } else {
+            message.warning('请完善个人信息')
+            history.push('/user/info/edit')
+        }
     } 
 
     return (
@@ -38,27 +44,33 @@ const Index = () => {
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>
+                    <h3 className='m-title'>登录</h3>
                     <Form form={form}
                         onFinish={onFinish}
+                        layout="vertical"
                     >
-                        <FormItem name='username'>
-                            <Input prefix={<UserOutlined />} placeholder="请输入您的手机号或者账号！" size='middle' />
+                        <FormItem 
+                            label='手机号' 
+                            name='username'
+                            rules={[{
+                                required: true, 
+                                message: '请输入正确的手机号', 
+                                pattern: /^1[3456789]\d{9}$/
+                            }]}
+                        >
+                            <Input  placeholder="请输入手机号" size='middle' />
                         </FormItem>
-                        <FormItem name='password' style={{marginBottom: 8}}>
-                            <Input prefix={<LockOutlined />} type="password" placeholder="请输入您的密码！" size='middle' />
+                        <FormItem 
+                            label='密码' 
+                            name='password' 
+                            rules={[{required: true, message: '请输入密码'}]}
+                        >
+                            <Input 
+                                type="password" 
+                                placeholder="请输入密码" 
+                                size='middle' 
+                            />
                         </FormItem>
-                        <Row style={{marginBottom: 10}}>
-                            <Col span={12} className='tf operation'>
-                                <Link to='/user/register'>
-                                    注册账号
-                                </Link>
-                            </Col>
-                            <Col span={12} className='tr operation'>
-                                <Link to='/user/reset'>
-                                    忘记密码？
-                                </Link>
-                            </Col>
-                        </Row>
                         <Form.Item>
                             <Button
                                 className="login-form-button"
@@ -71,6 +83,19 @@ const Index = () => {
                             </Button>
                         </Form.Item>
                     </Form>
+                    <div className='tc  mg-b-20' style={{fontSize: '12px'}}>
+                        <Link to='/user/reset' className='grey'>
+                            忘记密码
+                        </Link>
+                    </div>
+                    <div className='tc grey mg-b-10' style={{fontSize: '12px'}}>还没有账号?</div>
+                    <div>
+                        <Button block >
+                            <Link to='/user/register' >
+                                注册
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

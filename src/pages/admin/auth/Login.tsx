@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { Link } from '@friday/router'
 import { useHistory, useParams } from '@friday/router'
@@ -29,6 +29,7 @@ const Index = () => {
         if (respone.error) return 
         TokenService.set(respone?.token.token)
         dispatchUserInfo(respone.dataJson)
+        message.success('登录成功')
         history.push(`/admin/${type}has`)
     } 
 
@@ -39,14 +40,25 @@ const Index = () => {
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>
-                    <Form form={form}
+                    <h3 className='m-title'>登录</h3>
+                    <Form 
+                        form={form}
                         onFinish={onFinish}
+                        layout="vertical"
                     >
-                        <FormItem name='username'>
-                            <Input prefix={<UserOutlined />} placeholder="请输入您的账号！" size='middle' />
+                        <FormItem 
+                            name='username'
+                            label='账号'
+                            rules={[{required: true, message: '请输入账号'}]}
+                        >
+                            <Input  placeholder="请输入账号" size='middle' />
                         </FormItem>
-                        <FormItem name='password' >
-                            <Input prefix={<LockOutlined />} type="password" placeholder="请输入您的密码！" size='middle' />
+                        <FormItem 
+                            name='password'
+                            label='密码'
+                            rules={[{required: true, message: '请输入密码'}]}
+                        >
+                            <Input type="password" placeholder="请输入密码" size='middle' />
                         </FormItem>
                         <Form.Item>
                             <Button

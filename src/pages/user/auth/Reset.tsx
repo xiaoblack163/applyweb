@@ -47,7 +47,7 @@ const Index = () => {
         const respone = await dispatchAsync(apis.user.reset(values)) as any
         if (respone.error) return 
         message.success('重置成功')
-        history.push('/user')
+        history.push('/user/login')
     } 
 
     return (
@@ -57,16 +57,32 @@ const Index = () => {
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>
-                    <Form form={form}
+                    <h3 className='m-title'>重设密码</h3>
+                    <Form 
+                        form={form}
                         labelCol={{ span: 5 }}
                         onFinish={onFinish}
+                        layout="vertical"
+                        
                     >
-                        <FormItem name='phone' label='手机号'>
-                            <Input  placeholder="请输入您的手机号！" size='middle' />
+                        <FormItem 
+                            name='phone' 
+                            label='手机号'
+                            rules={[{
+                                required: true, 
+                                message: '请输入正确的手机号', 
+                                pattern: /^1[3456789]\d{9}$/
+                            }]}
+                        >
+                            <Input  placeholder="请输入手机号" size='middle' />
                         </FormItem>
-                        <FormItem name='code' label='验证码'>
+                        <FormItem 
+                            name='code' 
+                            label='验证码'
+                            rules={[{required: true, message: '请输入验证码'}]}
+                        >
                             <Input  
-                                placeholder="请输入您的验证码！" 
+                                placeholder="请输入验证码！" 
                                 size='middle' 
                                 maxLength={6}
                                 suffix={<a onClick={() => sendCode()}>
@@ -74,19 +90,33 @@ const Index = () => {
                                 </a>}
                             />
                         </FormItem>
-                        <FormItem name='newPwd' label='新密码' >
-                            <Input type="password" placeholder="请输入您的新密码！" size='middle' />
+                        <FormItem 
+                            name='newPwd' 
+                            label='新密码'
+                            rules={[{required: true, message: '请输入新密码'}]}
+                        >
+                            <Input type="password" placeholder="请输入新密码" size='middle' />
                         </FormItem>
                         <Form.Item>
-                            <Button
-                                className="login-form-button"
-                                type="primary"
-                                htmlType="submit"
-                                size='middle'
-                                block
-                            >
-                                确定
-                            </Button>
+                            <Row gutter={16}>
+                                <Col span={12}>
+                                    <Button block>
+                                        <Link to='/user/login'>取消</Link>
+                                    </Button>
+                                </Col>
+                                <Col span={12}>
+                                    <Button
+                                        className="login-form-button"
+                                        type="primary"
+                                        htmlType="submit"
+                                        size='middle'
+                                        block
+                                    >
+                                        确定
+                                    </Button>
+                                </Col>
+                            </Row>
+                            
                         </Form.Item>
                     </Form>
                 </div>

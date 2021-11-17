@@ -65,31 +65,27 @@ const Index = () => {
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>
+                    <h3 className='m-title'>注册</h3>
                     <Form form={form} 
                         labelCol={{ span: 5 }}
                         onFinish={onFinish}
+                        wrapperCol={{span: 19}}
+                        layout="vertical"
                     >
-                        <FormItem name='username' label='用户名'>
-                            <Input  placeholder="请输入您的账号！" size='middle' />
+                        <FormItem 
+                            name='phone' 
+                            label='手机号' 
+                            rules={[{required: true, message: '请输入正确的手机号！', pattern: /^1[3456789]\d{9}$/ }]} 
+                        >
+                            <Input placeholder="请输入手机号！" size='middle' />  
                         </FormItem>
-                        <FormItem name='password' label='密码' >
-                            <Input  type="password" placeholder="请输入您的密码" size='middle' />
-                        </FormItem>
-                        <FormItem name='name' label='真实姓名'>
-                            <Input  placeholder="请输入您的真实姓名" size='middle' />
-                        </FormItem>
-                        <FormItem name='sex' label='性别' initialValue={0}>
-                            <Radio.Group >
-                                <Radio value={0}>男</Radio>
-                                <Radio value={1}>女</Radio>
-                            </Radio.Group>
-                        </FormItem>
-                        <FormItem name='phone' label='手机号' rules={[{required: true, message: '请输入正确的手机号！', pattern: /^1[3456789]\d{9}$/ }]} >
-                            <Input  placeholder="请输入您的手机号！" size='middle' />  
-                        </FormItem>
-                        <FormItem name='code' label='验证码'>
+                        <FormItem 
+                            name='code' 
+                            label='验证码'
+                            rules={[{required: true, message: '请输入验证码'}]}
+                        >
                             <Input  
-                                placeholder="请输入您的验证码！" 
+                                placeholder="请输入验证码！" 
                                 size='middle' 
                                 maxLength={6}
                                 suffix={<a onClick={() => sendCode()}>
@@ -97,29 +93,30 @@ const Index = () => {
                                 </a>}
                             />
                         </FormItem>
-                        <FormItem name='area' label='地区'>
-                            <Cascader options={options} placeholder="请选择" />
+                        <FormItem 
+                            name='password' 
+                            label='密码' 
+                            rules={[{required: true, message: '请输入密码'}]}
+                        >
+                            <Input  type="password" placeholder="请输入密码（6-20个字符）" size='middle' />
                         </FormItem>
-                        <FormItem name='school' label='学校'>
-                            <Input  placeholder="请输入您的学校！" size='middle' />
+                        <FormItem 
+                            name='pw2' 
+                            label='确认密码' 
+                            rules={[
+                                ({getFieldValue})=>({
+                                    validator(rule,value){
+                                        if(!value || getFieldValue('password') === value){
+                                            return Promise.resolve()
+                                        }
+                                        return Promise.reject("两次密码输入不一致")
+                                    }
+                                })
+                            ]}
+                        >
+                            <Input type="password" placeholder="请再次输入密码" size='middle' />
                         </FormItem>
-                        <FormItem name='email' label='电子邮箱'>
-                            <Input  placeholder="请输入您的电子邮箱！" size='middle' />
-                        </FormItem>
-                        <FormItem name='wechat' label='微信号'>
-                            <Input  placeholder="请输入您的微信号！" size='middle' />
-                        </FormItem>
-                        <FormItem name='address' label='地址'>
-                            <Input  placeholder="请输入您的地址！" size='middle' />
-                        </FormItem>
-                        <Row style={{marginBottom: 10}}>
-                            <Col span={12} className='tf operation'>
-                                <Link to='/user/login'>
-                                    已有账号，去登录
-                                </Link>
-                            </Col>
-                        </Row>
-                        <Form.Item>
+                        <Form.Item  wrapperCol={{span: 24}}>
                             <Button
                                 className="login-form-button"
                                 type="primary"
@@ -130,6 +127,11 @@ const Index = () => {
                                 注册
                             </Button>
                         </Form.Item>
+                        <div className='tc  mg-b-20' style={{fontSize: '12px'}}>
+                            <Link to='/user/login' className='grey'>
+                                已有账号，直接登录
+                            </Link>
+                        </div>
                     </Form>
                 </div>
             </div>
