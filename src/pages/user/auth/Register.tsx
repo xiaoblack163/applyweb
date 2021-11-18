@@ -47,11 +47,8 @@ const Index = () => {
 
     const onFinish = async () => {
         const values = await form.validateFields()
-        const [province, city] = values.area
         const respone = await dispatchAsync(apis.user.register({
-            ...omit(values, 'area'),
-            province,
-            city
+            ...omit(values, 'pw2'),
         })) as any
         if (respone.error) return 
         message.success('注册成功')
