@@ -17,7 +17,7 @@ const Index = () => {
     } 
     return (
         <div>
-            <h3 className='mg-b-30'>修改密码</h3>
+            <h4 className='m-head'>修改密码</h4>
             <Form
                 form={form}
                 labelCol={{span: 3}}

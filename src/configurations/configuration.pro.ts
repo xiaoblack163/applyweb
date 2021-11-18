@@ -9,6 +9,7 @@ const configuration: IConfiguration = {
 	],
 	publicUrl: {
 		OPEN_API_URL: combineUrl(upstreams.production.OPEN_API_URL, BaseUrl.OPEN_API_URL),
+		OPEN_IMG_URL: combineUrl(upstreams.production.OPEN_API_URL, '')
 	}
 }
 

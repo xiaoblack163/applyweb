@@ -23,4 +23,13 @@ export default class Apis {
     // 修改密码
     public updatePassword = createPostApi<any>({url: `${this.prefix_config}/pwd/update`})
 
+    // 完善个人信息
+    public completeInfo = createPostApi<any>({url: `${this.prefix_config}/complete`})
+
+    // 添加作品
+    public addProduct = createPostApi<any>({url: `${this.prefix_config}/signup`})
+
+    // 作品列表
+    public productList = createGetApi<any>({url: `${this.prefix_config}/signup/info`})
+
 }

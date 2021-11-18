@@ -26,20 +26,15 @@ const Index = ({children}) => {
                 }}
             >
                 <div className="m-logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1" icon={<UploadOutlined />}>
-                        <Link to='/user/product'> 
-                            上传作品
-                        </Link>
-                    </Menu.Item>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
                     <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                        <Link to='/user/product/list'> 
-                            我的作品
+                        <Link to='/user/product'> 
+                            作品列表
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="3" icon={<UserOutlined />}>
                         <Link to='/user/info'> 
-                        个人信息
+                            个人信息
                         </Link>
                     </Menu.Item>
                     <Menu.Item key="4" icon={<EyeInvisibleOutlined />}>
