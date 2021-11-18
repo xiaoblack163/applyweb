@@ -104,7 +104,7 @@ const Index = () => {
                 onFinish={onFinish}
             >
                 <Row gutter={16}>
-                    <Col span={12} xs={24} xl={12}>
+                    <Col span={12} xs={24} md={12}>
                         <FormItem
                             label={<FormLabel name='用户名' en='User name' required />}
                             rules={[{required: true, message: '请输入用户名'}]}
@@ -149,7 +149,7 @@ const Index = () => {
                             <UploadImg />
                         </FormItem>
                     </Col>
-                    <Col span={12} xs={24} xl={12}>
+                    <Col span={12} xs={24} md={12}>
                         <FormItem
                             label={<FormLabel name='出生年/月/日' en='Birth date' required />}
                             rules={[{
@@ -192,7 +192,7 @@ const Index = () => {
                 </Row>
 
                 <Row gutter={16} className='mg-t-20'>
-                    <Col span={12} xs={24} xl={12}>
+                    <Col span={12} xs={24} md={12}>
                         <FormItem
                             label={<FormLabel name='职业' en='Occupation' required />}
                             name='profession'
@@ -276,7 +276,7 @@ const Index = () => {
                             <Input />
                         </FormItem>
                     </Col>
-                    <Col span={12} xs={24} xl={12} >
+                    <Col span={12} xs={24} md={12} >
                         <FormItem
                             label={<FormLabel name='职务' en='Postion'  />}
                             name='position'
