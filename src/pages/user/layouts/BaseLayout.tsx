@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd'
 import { UploadOutlined, UserOutlined, VideoCameraOutlined, LogoutOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import { Link } from '@friday/router'
 import { useUserInfo } from 'src/hooks'
+import { useLocation } from '@friday/router'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -12,6 +13,15 @@ import './index.less'
 const Index = ({children}) => {
 
     const { userInfo } = useUserInfo()
+
+    const { pathname } = useLocation()
+
+    const getkeys = () => {
+        if (pathname.indexOf('product') > -1) return '2'
+        if (pathname.indexOf('info') > -1) return '3'
+        if (pathname.indexOf('password') > -1) return '4'
+        return '2'
+    }
 
     return (
         <Layout className='components-layout-demo-responsive'>
@@ -26,7 +36,7 @@ const Index = ({children}) => {
                 }}
             >
                 <div className="m-logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={[getkeys()]}>
                     <Menu.Item key="2" icon={<VideoCameraOutlined />}>
                         <Link to='/user/product'> 
                             作品列表

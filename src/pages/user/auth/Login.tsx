@@ -30,7 +30,7 @@ const Index = () => {
         const { complete } = respone.dataJson
         if (complete) {
             message.success('登录成功')
-            history.push('/user')
+            history.push('/user/info')
         } else {
             message.warning('请完善个人信息')
             history.push('/user/info/edit')

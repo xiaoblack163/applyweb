@@ -21,7 +21,7 @@ const errorNotice = debounce((text, response?) => {
 	// sentry 上报
 }, 500)
 
-const AUTH_PATH = '/auth/login'
+const AUTH_PATH = '/'
 
 export const isApiTimeout = (error): boolean => {
 	return error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1
