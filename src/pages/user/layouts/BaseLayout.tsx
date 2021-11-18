@@ -12,8 +12,6 @@ import './index.less'
 
 const Index = ({children}) => {
 
-    const { userInfo } = useUserInfo()
-
     const { pathname } = useLocation()
 
     const getkeys = () => {

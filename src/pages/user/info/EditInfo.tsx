@@ -60,13 +60,14 @@ const Index = () => {
     React.useEffect(() => {
         if (!isEmpty(dataJson)) {
             
-            const {idcardBack, idcardFront, photo, province, city, county} = dataJson
+            const {idcardBack, idcardFront, photo, province, city, county, birthday} = dataJson
             const area = [province, city, county]
             const payload = {
                 ...omit(dataJson, ['birthday','idcardBack', 'idcardFront', 'photo']),    
                 area,      
                 idcardBack: transformUpload(idcardBack, publicUrl.OPEN_IMG_URL),
                 idcardFront: transformUpload(idcardFront, publicUrl.OPEN_IMG_URL),
+                birthday: moment(birthday),
                 photo: transformUpload(photo, publicUrl.OPEN_IMG_URL),
             }
             console.log(payload, 'payload')
@@ -296,7 +297,7 @@ const Index = () => {
                         </FormItem>
                         <FormItem
                             label={<FormLabel name='通信地址' en='Address' required />}
-                            name='Address'
+                            name='address'
                             rules={[{
                                 required: true, 
                                 message: '请输入通信地址', 
