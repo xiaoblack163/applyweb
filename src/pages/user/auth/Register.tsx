@@ -69,7 +69,6 @@ const Index = () => {
                     <Form form={form} 
                         labelCol={{ span: 5 }}
                         onFinish={onFinish}
-                        wrapperCol={{span: 19}}
                         layout="vertical"
                     >
                         <FormItem 
