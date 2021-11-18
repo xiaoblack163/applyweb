@@ -276,7 +276,7 @@ const Index = () => {
                             <Input />
                         </FormItem>
                     </Col>
-                    <Col span={12} xs={24}>
+                    <Col span={12} xs={24} xl={12} >
                         <FormItem
                             label={<FormLabel name='职务' en='Postion'  />}
                             name='position'
