@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Menu } from 'antd'
 import { FileOutlined, FileDoneOutlined, LogoutOutlined } from '@ant-design/icons'
-import { Link } from '@friday/router'
+import { Link, useLocation} from '@friday/router'
 import useUserInfo from 'src/hooks/useUserInfo'
 
 const { Header, Content, Footer, Sider } = Layout
@@ -15,7 +15,16 @@ const Index = ({children}) => {
 
     const { type } = userInfo as any
 
-    console.log(type, '111')
+    const { pathname } = useLocation()
+
+
+    const getkeys = () => {
+        if (pathname.indexOf('reviewtreat') > -1) return '1'
+        if (pathname.indexOf('reviewhas') > -1) return '2'
+        if (pathname.indexOf('managetreat') > -1) return '3'
+        if (pathname.indexOf('managehas') > -1) return '4'
+        return '4'
+    }
 
     return (
         <Layout>
@@ -30,7 +39,7 @@ const Index = ({children}) => {
                 }}
             >
                 <div className="m-logo" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={[getkeys()]}>
                     
                     {type == 2 && 
                         <Menu.Item key="1" icon={<FileOutlined />} >

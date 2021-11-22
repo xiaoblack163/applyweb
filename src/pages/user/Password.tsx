@@ -32,19 +32,16 @@ const Index = () => {
                 <FormItem name='newPwd' label='新密码'>
                     <Input  placeholder="请输入您的新密码！" type='password' size='middle' />
                 </FormItem>
-                <Form.Item
-                    wrapperCol={{push: 8}}
-                >
+                <div className='tc' style={{width: '328px', margin: '0 auto'}}>
                     <Button
-                        className="login-form-button"
                         type="primary"
                         htmlType="submit"
                         size='middle'
-                        style={{width : '200px'}}
+                        block
                     >
-                        确定
+                        保存
                     </Button>
-                </Form.Item>
+                </div>
             </Form>
         </div>
     )

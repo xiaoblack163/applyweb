@@ -7,7 +7,7 @@ import { get } from 'lodash'
 
 const Qrcode = (props) => {
 
-    const { fileList = [], onChange, tips = '上传格式jpg、png、jpeg，大小不超过2M', title='上传图片' } = props
+    const { fileList = [], onChange, tips = '上传格式jpg、png、jpeg，大小不超过2M', title='上传图片'  } = props
 
     const [uploadFileList, setUploadFilelist] = useState<any[]>([])
 
@@ -46,12 +46,11 @@ const Qrcode = (props) => {
                     className="m-avatar-uploader"
                     {...uploadprops}
                 >
-                    {fileList.length > 0 ? null :
-                        <div>
-                            <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>{title}</div>
-                        </div>
-                    }
+                    
+                    <div>
+                        <PlusOutlined />
+                        <div style={{ marginTop: 8 }}>{title}</div>
+                    </div>
                 </Upload>
             </div>
             <div style={{ fontSize: '10px', color: '#999', marginTop: 10 }} >{tips}</div>

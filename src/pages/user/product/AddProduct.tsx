@@ -3,10 +3,44 @@ import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message} fr
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { useHistory, useParams } from '@friday/router'
-import { isEmpty } from 'lodash'
+import UploadImg from './UploadImg'
+import { isEmpty, get } from 'lodash'
+import { useConfiguration } from '@friday/core'
 
 
 const FormItem = Form.Item
+
+const normFile = (e: any) => {
+    if (Array.isArray(e)) {
+        return e;
+    }
+    return e && e.fileList
+}
+
+const getUpload = (uploadResponse) => {
+    // 没图片
+    if (isEmpty(uploadResponse)) return ''
+    return uploadResponse.map(item => {
+        return get(item, 'response.filePath') || ''
+    })
+}   
+
+const transformUpload = (path=[], prefix) => {
+    if (isEmpty(path)) return ''
+    return path.map(item => {
+        return {
+            response: {
+                data: {
+                    path: item
+                },
+                filePath: item
+            },
+            status: "done",
+            thumbUrl: prefix + item
+        }
+    })
+}
+
 
 const Index = () => {
     const apis = useApiSelector()
@@ -17,9 +51,18 @@ const Index = () => {
 
     const {dataJson} = useRequest(id ? apis.user.productList({}): null)
 
+    const { publicUrl } = useConfiguration()
+
     React.useEffect(() => {
         if (!isEmpty(dataJson)) {
-            form.setFieldsValue(dataJson)
+            const {productPics, productVideos} = dataJson
+            console.log(typeof productPics)
+            const payload = {
+                ...dataJson,
+                productPics: transformUpload(JSON.parse(productPics), publicUrl.OPEN_IMG_URL),
+                productVideos: transformUpload(JSON.parse(productVideos), publicUrl.OPEN_IMG_URL),
+            }
+            form.setFieldsValue(payload)
         }
     }, [dataJson])
 
@@ -29,8 +72,13 @@ const Index = () => {
 
     const onFinish = async () => {
         const values = await form.validateFields()
-     
-        const respone = await dispatchAsync(apis.user.addProduct(values)) as any
+        const {productPics, productVideos} = values
+        const respone = await dispatchAsync(apis.user.addProduct({
+            ...values,
+            productPics: JSON.stringify(getUpload(productPics)),
+            productVideos: JSON.stringify(getUpload(productVideos))
+        })) as any
+        
         if (respone.error) return 
         message.success('添加成功')
         history.goBack()
@@ -41,7 +89,14 @@ const Index = () => {
             <h4 className='m-head'>添加作品</h4>
             <Form 
                 form={form}
-                labelCol={{span: 8}}
+                labelCol={{
+                    xs:24,
+                    md:6
+                }}
+                wrapperCol={{
+                    xs: 24,
+                    md: 12
+                }}
                 onFinish={onFinish}
             >
                 <FormItem
@@ -95,29 +150,33 @@ const Index = () => {
                     label={'作品图片'}
                     rules={[{required: true, message: '请上传作品图片'}]}
                     name='productPics'
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
                 >
-                    <Input placeholder='请上传作品图片' />
+                    <UploadImg title='上传图片' />
                 </FormItem>
                 <FormItem
                     label={'作品视频'}
                     rules={[{required: true, message: '请上传作品视频'}]}
                     name='productVideos'
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
                 >
-                    <Input placeholder='请上传作品视频' />
+                    <UploadImg title='上传视频' />
                 </FormItem>
                 <FormItem
                     label={'设计主题及作品说明(中文)'}
                     rules={[{required: true, message: '请输入设计主题及作品说明(中文)'}]}
                     name='productDesc'
                 >
-                    <Input placeholder='请输入设计主题及作品说明(中文)' />
+                    <Input.TextArea placeholder='请输入设计主题及作品说明(中文)' />
                 </FormItem>
                 <FormItem
                     label={'设计主题及作品说明(英文)'}
                     rules={[{required: true, message: '请输入设计主题及作品说明(英文)'}]}
                     name='productDescEn'
                 >
-                    <Input placeholder='请输入设计主题及作品说明(英文)' />
+                    <Input.TextArea placeholder='请输入设计主题及作品说明(英文)' />
                 </FormItem>
                 <div className='tc' style={{width: '328px', margin: '0 auto'}}>
                     <Button

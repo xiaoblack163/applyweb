@@ -6,7 +6,9 @@ const combineUrl = (upstream: string, baseName: string, ) => {
 		throw new Error(`ConfigError upstream is empty`)
 	}
 
-	return `${window.location.protocol}//${upstream}/${baseName}`
+	if (baseName) return `${window.location.protocol}//${upstream}/${baseName}`
+
+	return `${window.location.protocol}//${upstream}`
 }
 
 

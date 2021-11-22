@@ -1,16 +1,29 @@
 import React from "react";
-import { Divider, Space } from 'antd'
+import { Divider, Space, Popover } from 'antd'
 import { Link } from '@friday/router'
+import { get } from 'lodash'
 
 
-const useColumns = () => {
+const useColumns = ( publicUrl) => {
     return React.useMemo(() => {
         const columns = [{
             title: '作品名称',
             dataIndex: 'productName'
         }, {
             title: '缩略图',
-            dataIndex: ''
+            dataIndex: 'productPics',
+            width: '150px',
+            render: (txt) => {
+                const imgUrl = get(eval(txt), '[0]')
+                const img =  publicUrl.OPEN_IMG_URL + imgUrl
+                return (
+                    <div className='m-img-thumbs'>
+                        <Popover content={<img src={img} />}>
+                            <img src={img} />
+                        </Popover>
+                    </div>
+                )
+            }
         }, {
             title: '参赛类别',
             dataIndex: 'productType'
@@ -24,6 +37,7 @@ const useColumns = () => {
         }, {
             title: '操作',
             dataIndex: 'opr',
+            fixed: 'right',
             render: () => {
                 return (
                     <Space split={<Divider />}>  

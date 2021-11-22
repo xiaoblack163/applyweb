@@ -53,7 +53,7 @@ export const axiosInstance = httpAxios(axiosConifg, {
 			errorNotice('网络异常')
 		}
 
-		if (error.response && status === 401 && !includes(window.location.href, AUTH_PATH)) {
+		if (error.response && status === 401) {
 			errorNotice('登录超时')
 			redirect()
 			return Promise.reject(error)
