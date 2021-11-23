@@ -1,9 +1,10 @@
 import React  from "react";
-import { Input, Alert, Descriptions, Form, Button, Row, Col, message} from 'antd'
+import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image} from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { useParams, useHistory } from '@friday/router'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
+import { useConfiguration } from '@friday/core'
 
 const FormItem = Form.Item
 
@@ -14,6 +15,8 @@ const Index = () => {
     const [ form ] = Form.useForm()
 
     const { id } = useParams() as any
+
+    const { publicUrl } = useConfiguration()
 
     const { dataJson } = useRequest(apis.admin.reviewDetail({id}))
 
@@ -39,6 +42,8 @@ const Index = () => {
         message.success('保存成功')
         history.goBack()
     }
+
+    const imgList = eval(get(dataJson, 'productPics')) || []
     
 
     return (
@@ -57,7 +62,17 @@ const Index = () => {
                     {get(dataJson, 'recommendName') || '--'}
                 </Descriptions.Item>
                 <Descriptions.Item label="作品图片" span={3}>
-
+                    <Image.PreviewGroup>
+                        {imgList.map(item => {
+                            return (
+                                <Image
+                                    width={200}
+                                    key={item}
+                                    src={publicUrl.OPEN_IMG_URL + item}
+                                />
+                            )
+                        })}
+                    </Image.PreviewGroup>
                 </Descriptions.Item>
                 <Descriptions.Item label="作品视频" span={3}>
 
