@@ -1,5 +1,6 @@
 
 import React from 'react'
+import {Row, Col} from  'antd'
 import banner from './images/banner.png'
 import pic_one from './images/pic_01.jpeg'
 import pic_two from './images/pic_02.jpeg'
@@ -13,32 +14,32 @@ const Home = () => {
 				<img src={banner} />
 			</div>
 			<div className='m-home-nav'>
-				<ul>
-					<li>
+				<Row gutter={16}>
+					<Col xs={6} md={3}  className='tc'>
 						<a>大赛简介</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3}   className='tc'>
 						<a>参赛要求</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3}  className='tc'>
 						<a>奖项设置</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3} className='tc'>
 						<a>大赛流程</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3} className='tc'>
 						<a>组织机构</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3} className='tc'>
 						<a href='/user/login'>立即参赛</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3}  className='tc'>
 						<a href='/admin/review/login'>评委入口</a>
-					</li>
-					<li>
+					</Col>
+					<Col xs={6} md={3} className='tc'>
 						<a href='/admin/manage/login'>管理员</a>
-					</li>
-				</ul>
+					</Col>
+				</Row>
 			</div>
 			<div className='m-home-main'>
 				<div className='m-home-section'>
@@ -101,7 +102,7 @@ const Home = () => {
 				<div className='m-home-section'>
 					<h3>奖项设置</h3>
 					<p className='tc'>
-						<img src={pic_one} />
+						<img src={pic_one} style={{width: '100%'}} />
 					</p>
 				</div>
 				<div className='m-home-section'>
@@ -118,7 +119,7 @@ const Home = () => {
 				<div className='m-home-section'>
 					<h3>组织机构</h3>
 					<p className='tc'>
-						<img src={pic_two} />
+						<img src={pic_two} style={{width: '100%'}} />
 					</p>
 				</div>
 			</div>

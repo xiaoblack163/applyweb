@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Form, Input, Button, Row, Col, message} from 'antd'
 import { Link } from '@friday/router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
@@ -19,6 +19,10 @@ const Index = () => {
     const {dispatchUserInfo} = useUserInfo()
     
     const history = useHistory()
+
+    useEffect(() => {
+		TokenService.clear()
+	}, [])
 
 
     const onFinish = async () => {

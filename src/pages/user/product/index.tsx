@@ -27,7 +27,7 @@ const Index = () => {
 
             <Table 
                 columns={columns as any}
-                dataSource={[{...dataJson, id: 1}]}
+                dataSource={[{...dataJson}]}
                 loading={isValidating}
                 rowKey='id'
                 scroll={{

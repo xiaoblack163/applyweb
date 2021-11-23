@@ -4,6 +4,7 @@ import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { useHistory, useParams } from '@friday/router'
 import UploadImg from './UploadImg'
+import UploadVideo from './UploadVideo'
 import { isEmpty, get } from 'lodash'
 import { useConfiguration } from '@friday/core'
 
@@ -47,7 +48,7 @@ const Index = () => {
 
     const [ form ] = Form.useForm()
 
-    const { id } = useParams() as any
+    const { id = 0 } = useParams() as any
 
     const {dataJson} = useRequest(id ? apis.user.productList({}): null)
 
@@ -76,11 +77,12 @@ const Index = () => {
         const respone = await dispatchAsync(apis.user.addProduct({
             ...values,
             productPics: JSON.stringify(getUpload(productPics)),
-            productVideos: JSON.stringify(getUpload(productVideos))
+            productVideos: JSON.stringify(getUpload(productVideos)),
+            id
         })) as any
         
         if (respone.error) return 
-        message.success('添加成功')
+        message.success(id ? '编辑成功':'添加成功')
         history.goBack()
     }
 
@@ -162,7 +164,7 @@ const Index = () => {
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    <UploadImg title='上传视频' />
+                    <UploadVideo title='上传视频' tips='' />
                 </FormItem>
                 <FormItem
                     label={'设计主题及作品说明(中文)'}
@@ -178,7 +180,7 @@ const Index = () => {
                 >
                     <Input.TextArea placeholder='请输入设计主题及作品说明(英文)' />
                 </FormItem>
-                <div className='tc' style={{width: '328px', margin: '0 auto'}}>
+                <div className='tc' style={{width: '300px', margin: '0 auto'}}>
                     <Button
                         type="primary"
                         htmlType="submit"

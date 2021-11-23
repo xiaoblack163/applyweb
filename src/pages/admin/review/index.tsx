@@ -1,10 +1,11 @@
 import React  from "react";
-import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image} from 'antd'
+import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image, Space} from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { useParams, useHistory } from '@friday/router'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
 import { useConfiguration } from '@friday/core'
+import ModalVideo from './ModalVideo'
 
 const FormItem = Form.Item
 
@@ -44,6 +45,8 @@ const Index = () => {
     }
 
     const imgList = eval(get(dataJson, 'productPics')) || []
+
+    const videoList = eval(get(dataJson, 'productVideos')) || []
     
 
     return (
@@ -63,11 +66,11 @@ const Index = () => {
                 </Descriptions.Item>
                 <Descriptions.Item label="作品图片" span={3}>
                     <Image.PreviewGroup>
-                        {imgList.map(item => {
+                        {imgList.map((item, index) => {
                             return (
                                 <Image
                                     width={200}
-                                    key={item}
+                                    key={index}
                                     src={publicUrl.OPEN_IMG_URL + item}
                                 />
                             )
@@ -75,7 +78,13 @@ const Index = () => {
                     </Image.PreviewGroup>
                 </Descriptions.Item>
                 <Descriptions.Item label="作品视频" span={3}>
-
+                    <Space>
+                        {videoList.map((item, index) => {
+                            return (
+                                <ModalVideo title={`视频${index+1}`} url={publicUrl.OPEN_IMG_URL + item} key={index} />
+                            )
+                        })} 
+                    </Space> 
                 </Descriptions.Item>
                 <Descriptions.Item label="设计主题及作品说明(中文)" span={3}>
                     {get(dataJson, 'productDesc') || '--'}
@@ -105,7 +114,7 @@ const Index = () => {
                     rules={[{required: true, message: '请评分1-20'}]}
                     name='itemA'
                 >
-                    <Input placeholder='请评分1-20' max={20} min={1}  />
+                    <Input placeholder='请评分1-20' max={20} min={1}  suffix='分'  />
                 </FormItem>
 
                 <FormItem
@@ -113,7 +122,7 @@ const Index = () => {
                     rules={[{required: true, message: '请评分1-20'}]}
                     name='itemB'
                 >
-                    <Input placeholder='请评分1-20' max={20} min={1}  />
+                    <Input placeholder='请评分1-20' max={20} min={1} suffix='分'   />
                 </FormItem>
 
                 <FormItem
@@ -121,7 +130,7 @@ const Index = () => {
                     rules={[{required: true, message: '请评分1-20'}]}
                     name='itemC'
                 >
-                    <Input placeholder='请评分1-20' max={20} min={1}  />
+                    <Input placeholder='请评分1-20' max={20} min={1} suffix='分'  />
                 </FormItem>
 
                 <FormItem
@@ -129,7 +138,7 @@ const Index = () => {
                     rules={[{required: true, message: '请评分1-15'}]}
                     name='itemD'
                 >
-                    <Input placeholder='请评分1-15' max={15} min={1}  />
+                    <Input placeholder='请评分1-15' max={15} min={1} suffix='分'  />
                 </FormItem>
 
                 <FormItem
@@ -137,7 +146,7 @@ const Index = () => {
                     rules={[{required: true, message: '请评分1-15'}]}
                     name='itemE'
                 >
-                    <Input placeholder='请评分1-15' max={15} min={1}  />
+                    <Input placeholder='请评分1-15' max={15} min={1}  suffix='分'  />
                 </FormItem>
 
                 <FormItem
@@ -145,7 +154,7 @@ const Index = () => {
                     rules={[{required: true, message: '请评分1-10'}]}
                     name='itemF'
                 >
-                    <Input placeholder='请评分1-20' max={10} min={1}  />
+                    <Input placeholder='请评分1-20' max={10} min={1}  suffix='分' />
                 </FormItem>
                 <FormItem
                     noStyle
@@ -162,19 +171,20 @@ const Index = () => {
                                 label={'总分数'}
                             >
                                 <div style={{color: 'red', fontSize: '20px'}}>
-                                    {sum}
+                                    {sum}分
                                 </div>    
                             </Form.Item>
                         ) 
                     }}
                 </FormItem>
-                <div className='tc' style={{width: '328px', margin: '0 auto'}}>
+                <div className='tc' style={{width: '300px', margin: '0 auto'}}>
                     <Row gutter={16}>
                         <Col span={12}>
                             <Button
                                 size='middle'
                                 onClick={() => onFinish(0)}
                                 block
+                                disabled={dataJson.save == 1}
                             >
                                 保存
                             </Button>
@@ -186,6 +196,7 @@ const Index = () => {
                                 size='middle'
                                 onClick={() => onFinish(1)}
                                 block
+                                disabled={dataJson.save == 1}
                             >
                                 提交
                             </Button>

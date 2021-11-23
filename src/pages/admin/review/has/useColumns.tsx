@@ -44,11 +44,16 @@ const useColumns = (revalidate) => {
             render: (text, record) => {
                 const {save, id} = record
                 return (
-                    <Space split={<Divider />}>  
+                    <Space split={<Divider type="vertical" />} >  
                         {save == 1 ? 
                             <span className='grey' > 已提交</span> :
                             <span className='operation' onClick={() => submit(id)}> 提交</span> 
                         }
+                        <span className='operation'>
+                            <Link to={`/admin/review/${record.id}/score`}>
+                                查看
+                            </Link >
+                        </span>
                     </Space>
                 )
             }

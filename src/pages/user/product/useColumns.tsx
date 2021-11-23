@@ -38,12 +38,12 @@ const useColumns = ( publicUrl) => {
             title: '操作',
             dataIndex: 'opr',
             fixed: 'right',
-            render: () => {
+            render: (text, record) => {
                 return (
                     <Space split={<Divider />}>  
                         <span className='operation'>
-                            <Link to='/user/product/edit/1'>
-                                编辑 
+                            <Link to={`/user/product/edit/${record.id}`}>
+                                编辑
                             </Link >
                         </span>
                         <span className='operation'>删除 </span>

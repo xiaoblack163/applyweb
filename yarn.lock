@@ -4411,6 +4411,13 @@ dom-converter@^0.2.0:
   dependencies:
     utila "~0.4"
 
+dom-helpers@^3.4.0:
+  version "3.4.0"
+  resolved "http://registry.npm.yoyi.com.cn/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
+  integrity sha1-6bNpcA+Vn2Ls3lprq95LzNkWmvg=
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+
 dom-serializer@0:
   version "0.2.2"
   resolved "http://registry.npm.yoyi.com.cn/dom-serializer/-/dom-serializer-0.2.2.tgz#1afb81f533717175d478655debc5e332d9f9bb51"
@@ -9966,6 +9973,18 @@ react-is@^17.0.1:
   resolved "http://registry.npm.yoyi.com.cn/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=
 
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "http://registry.npm.yoyi.com.cn/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal-video@^1.2.8:
+  version "1.2.8"
+  resolved "http://registry.npm.yoyi.com.cn/react-modal-video/-/react-modal-video-1.2.8.tgz#819b6c18dd0994f0af82dd9f8c8d07724cbee737"
+  integrity sha1-gZtsGN0JlPCvgt2fjI0Hcky+5zc=
+  dependencies:
+    react-transition-group "^2.2.1"
+
 react-refresh@^0.8.3:
   version "0.8.3"
   resolved "http://registry.npm.yoyi.com.cn/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
@@ -10062,6 +10081,16 @@ react-scripts@4.0.0-next.64:
     workbox-webpack-plugin "5.1.3"
   optionalDependencies:
     fsevents "^2.1.3"
+
+react-transition-group@^2.2.1:
+  version "2.9.0"
+  resolved "http://registry.npm.yoyi.com.cn/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
+  integrity sha1-35zbAleWIRFRpDbGmo87l7WwfI0=
+  dependencies:
+    dom-helpers "^3.4.0"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-lifecycles-compat "^3.0.4"
 
 react@^17.0.2:
   version "17.0.2"

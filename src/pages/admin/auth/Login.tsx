@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect }  from 'react'
 import { Form, Input, Button, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { Link } from '@friday/router'
@@ -17,6 +17,10 @@ const Index = () => {
     const { type } = useParams() as any
 
     const apis = useApiSelector()
+
+    useEffect(() => {
+		TokenService.clear()
+	}, [])
 
     const {dispatchUserInfo} = useUserInfo()
     
