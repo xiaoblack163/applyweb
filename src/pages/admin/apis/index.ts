@@ -5,7 +5,9 @@ export default class Apis {
 
     private manage_config = '/manage'
 
-    private review_config = 'review'
+    private review_config = '/review'
+
+    private admin_config = '/admin'
 	
 	// 管理员登录
 	public manageLogin = createPostApi({ url: `${this.manage_config}/login`})
@@ -25,6 +27,15 @@ export default class Apis {
 
     // 评分更新
     public saveOrUpdate = createPostApi({ url: `${this.review_config}/userSignInfo/saveOrUpdate`})
+
+    // 管理评分列表
+    public manageList = createGetApi({ url: `${this.admin_config}/signInfo/list`})
+
+    // 下载
+    public manageListDownload = createGetApi({ url: `${this.admin_config}/signInfo/exportExcel`, responseType: 'blob'})
+
+    // 查看评分详细
+    public manageInfo = createGetApi({ url: `${this.admin_config}/signupScoringInfo/query`})
 
 }
 

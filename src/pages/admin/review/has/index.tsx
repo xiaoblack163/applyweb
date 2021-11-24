@@ -1,5 +1,5 @@
 import React  from "react";
-import { Table, Space, Select } from 'antd'
+import { Table, Space, Select, PageHeader, Card } from 'antd'
 import useColumns from './useColumns'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
@@ -40,8 +40,13 @@ const Index = () => {
 
     return (
         <div>
-            <h4 className='m-head'>已评审作品</h4>
-            <div className='clearfix mg-b-10'>
+            <PageHeader 
+                title='已评审作品'
+                ghost={false}
+                className='mg-b-10'
+            />
+            <Card hoverable>
+            <div className='clearfix mg-b-20'>
                 <Space>
                     <div>
                         参赛类别：
@@ -74,6 +79,7 @@ const Index = () => {
                 loading={isValidating}
                 rowKey={'id'}
             />
+            </Card>
         </div>
     )
 }

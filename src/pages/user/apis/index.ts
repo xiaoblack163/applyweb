@@ -30,6 +30,8 @@ export default class Apis {
     public addProduct = createPostApi<any>({url: `${this.prefix_config}/signup`})
 
     // 作品列表
-    public productList = createGetApi<any>({url: `${this.prefix_config}/signup/info`})
+    public productList = createGetApi<any>({url: `${this.prefix_config}/signup/list`})
+
+    public productInfo = createGetApi<any>({url: `${this.prefix_config}/signup/info`})
 
 }

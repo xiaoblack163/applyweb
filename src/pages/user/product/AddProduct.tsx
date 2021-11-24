@@ -1,5 +1,5 @@
 import React  from "react";
-import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message} from 'antd'
+import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message, PageHeader, Card} from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { useHistory, useParams } from '@friday/router'
@@ -50,7 +50,7 @@ const Index = () => {
 
     const { id = 0 } = useParams() as any
 
-    const {dataJson} = useRequest(id ? apis.user.productList({}): null)
+    const { dataJson } = useRequest(id ? apis.user.productInfo({id}): null)
 
     const { publicUrl } = useConfiguration()
 
@@ -88,7 +88,13 @@ const Index = () => {
 
     return (
         <div>
-            <h4 className='m-head'>添加作品</h4>
+            <PageHeader 
+                title='添加作品'
+                ghost={false}
+                className='mg-b-10'
+                onBack={() => history.goBack()}
+            />
+            <Card hoverable>
             <Form 
                 form={form}
                 labelCol={{
@@ -105,6 +111,7 @@ const Index = () => {
                     label={'参赛类别'}
                     rules={[{required: true, message: '请选择参赛类别'}]}
                     name='productType'
+                    className='pd-t-20'
                 >
                     <Radio.Group>
                         <Radio value={'个人组'}>个人组</Radio>
@@ -191,7 +198,7 @@ const Index = () => {
                     </Button>
                 </div>
             </Form>
-
+            </Card>
         </div>
     )
 }

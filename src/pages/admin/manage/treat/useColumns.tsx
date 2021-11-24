@@ -11,8 +11,8 @@ const useColumns = () => {
 
     return React.useMemo(() => {
         const columns = [{
-            title: '作品名称',
-            dataIndex: 'productName'
+            title: '参赛作品编号',
+            dataIndex: 'id'
         }, 
         // {
         //     title: '缩略图',
@@ -31,30 +31,38 @@ const useColumns = () => {
         //     }
         // }, 
         {
-            title: '参赛类别',
+            title: '参赛组别',
             dataIndex: 'productType'
         }, {
-            title: '参赛方向',
-            dataIndex: 'entryDirection'
+            title: '参赛者姓名',
+            dataIndex: 'name'
         }, {
-            title: '状态',
-            dataIndex: 'opr',
-            render: () => '未打分'
+            title: '参赛作品名称',
+            dataIndex: 'productName'
         }, {
-            title: '操作',
-            dataIndex: 'opr',
-            fixed: 'right',
-            render: (text, record) => {
-                return (
-                    <Space split={<Divider />}>  
-                        <span className='operation'>
-                            <Link to={`/admin/review/${record.id}/score`}>
-                                去打分
-                            </Link >
-                        </span>
-                    </Space>
-                )
-            }
+            title: '原创性',
+            dataIndex: 'itemA'
+        },{
+            title: '创新性',
+            dataIndex: 'itemB'
+        },{
+            title: '美观性',
+            dataIndex: 'itemC'
+        },{
+            title: '系列性',
+            dataIndex: 'itemD'
+        },{
+            title: '工业性',
+            dataIndex: 'itemE'
+        },{
+            title: '商业价值',
+            dataIndex: 'itemF'
+        },{
+            title: '评委评分个数',
+            dataIndex: 'reviewCount'
+        },{
+            title: '总分',
+            dataIndex: 'sum'
         }]
     
         return columns

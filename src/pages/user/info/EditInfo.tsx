@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message} from 'antd'
+import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message, PageHeader, Card} from 'antd'
 import FormLabel from './FormLabel'
 import options from 'src/common/city.json'
 import UploadImg from './UploadImg'
@@ -97,11 +97,18 @@ const Index = () => {
 
     return (
         <div className='m-info'>
-            <h4 className='m-head'>完善个人信息</h4>
+            <PageHeader 
+                title='完善个人信息'
+                ghost={false}
+                className='mg-b-10'
+                onBack={() => history.goBack()}
+            />
+            <Card hoverable>
             <Form 
                 form={form}
                 labelCol={{span: 7}}
                 onFinish={onFinish}
+                className='pd-t-20'
             >
                 <Row gutter={16}>
                     <Col span={12} xs={24} md={12}>
@@ -328,7 +335,7 @@ const Index = () => {
                     </Button>
                 </div>
             </Form>
-            
+            </Card>
         </div>
     )
 }

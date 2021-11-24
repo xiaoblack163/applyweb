@@ -26,32 +26,60 @@ const useColumns = (revalidate) => {
 
     return React.useMemo(() => {
         const columns = [{
-            title: '作品名称',
-            dataIndex: 'productName'
+            title: '参赛作品编号',
+            dataIndex: 'id'
         },  {
-            title: '参赛类别',
+            title: '参赛组别',
             dataIndex: 'productType'
         }, {
-            title: '参赛方向',
-            dataIndex: 'entryDirection'
+            title: '参赛者姓名',
+            dataIndex: 'name'
+        },  {
+            title: '参赛作品名称',
+            dataIndex: 'productName'
         }, {
-            title: '分数',
-            dataIndex: 'sum',
+            title: '参赛者联系电话',
+            dataIndex: 'contact'
         }, {
+            title: '参赛者地址',
+            dataIndex: 'address'
+        }, {
+            title: '参赛者邮箱',
+            dataIndex: 'email'
+        },{
+            title: '原创性',
+            dataIndex: 'itemA'
+        },{
+            title: '创新性',
+            dataIndex: 'itemB'
+        },{
+            title: '美观性',
+            dataIndex: 'itemC'
+        },{
+            title: '系列性',
+            dataIndex: 'itemD'
+        },{
+            title: '工业性',
+            dataIndex: 'itemE'
+        },{
+            title: '商业价值',
+            dataIndex: 'itemF'
+        },{
+            title: '评委评分个数',
+            dataIndex: 'reviewCount'
+        },{
+            title: '总分',
+            dataIndex: 'sum'
+        },{
             title: '操作',
             dataIndex: 'opr',
             fixed: 'right',
             render: (text, record) => {
-                const {save, id} = record
                 return (
                     <Space split={<Divider type="vertical" />} >  
-                        {save == 1 ? 
-                            <span className='grey' > 已提交</span> :
-                            <span className='operation' onClick={() => submit(id)}> 提交</span> 
-                        }
                         <span className='operation'>
-                            <Link to={`/admin/review/${record.id}/score`}>
-                                查看
+                            <Link to={`/admin/manage/${record.id}/score`}>
+                                查看详情
                             </Link >
                         </span>
                     </Space>

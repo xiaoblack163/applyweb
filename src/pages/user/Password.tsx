@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button, message } from 'antd'
+import { Form, Input, Button, message, PageHeader, Card } from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync } from '@friday/async'
 
@@ -17,10 +17,16 @@ const Index = () => {
     } 
     return (
         <div>
-            <h4 className='m-head'>修改密码</h4>
+            <PageHeader 
+                title='修改密码'
+                ghost={false}
+                className='mg-b-10'
+            />
+            <Card hoverable>
             <Form
                 form={form}
-                labelCol={{span: 3}}
+                labelCol={{xs: 6, md: 6}}
+                wrapperCol={{xs: 12, md: 12}}
                 onFinish={onFinish}
             >
                 <FormItem name='phone' label='手机号'>
@@ -43,6 +49,7 @@ const Index = () => {
                     </Button>
                 </div>
             </Form>
+            </Card>
         </div>
     )
 }

@@ -59,8 +59,8 @@ const Index = ({children}) => {
             </Sider>
             <Layout style={{minHeight: '100vh' }}>
                 <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
-                <Content style={{ margin: '24px 16px 0', minWidth: 328}}>
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 540 }}>
+                <Content style={{ margin: '16px 16px 0', minWidth: 328 }} >
+                    <div className="site-layout-background" style={{ minHeight: 360 }}>
                         {children}
                     </div>
                 </Content>

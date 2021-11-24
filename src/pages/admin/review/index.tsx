@@ -1,5 +1,5 @@
 import React  from "react";
-import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image, Space} from 'antd'
+import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image, Space, PageHeader, Card} from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { useParams, useHistory } from '@friday/router'
 import { dispatchAsync, useRequest } from '@friday/async'
@@ -51,7 +51,13 @@ const Index = () => {
 
     return (
         <div>
-            <h4 className='m-head'>作品评分</h4>
+            <PageHeader 
+                title='作品评分'
+                ghost={false}
+                className='mg-b-10'
+                onBack={() => history.goBack()}
+            />
+            <Card hoverable>
             <Alert message= '参赛作品信息' />
             <Descriptions bordered  className='mg-t-20 mg-b-20' layout="vertical">
                 <Descriptions.Item label="作品编号">{get(dataJson, 'id')}</Descriptions.Item>
@@ -204,7 +210,7 @@ const Index = () => {
                     </Row>
                 </div>
             </Form>
-
+            </Card>
             
         </div>
     )

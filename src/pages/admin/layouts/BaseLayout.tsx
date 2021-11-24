@@ -44,7 +44,7 @@ const Index = ({children}) => {
                     {type == 2 && 
                         <Menu.Item key="1" icon={<FileOutlined />} >
                             <Link to='/admin/reviewtreat'>
-                                待评审作品
+                                未评审作品
                             </Link>
                         </Menu.Item>
                     }
@@ -58,7 +58,7 @@ const Index = ({children}) => {
                     {type == 3 && 
                         <Menu.Item key="3" icon={<FileOutlined />} >
                             <Link to='/admin/managetreat'>
-                            待评分作品
+                            未评分作品
                             </Link>
                         </Menu.Item>
                     }
@@ -78,8 +78,8 @@ const Index = ({children}) => {
             </Sider>
             <Layout style={{minHeight: '100vh'}}>
                 <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
-                <Content style={{ margin: '24px 16px 0', minWidth: 328 }} >
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                <Content style={{ margin: '16px 16px 0', minWidth: 328 }} >
+                    <div className="site-layout-background" style={{ minHeight: 360 }}>
                         {children}
                     </div>
                 </Content>
