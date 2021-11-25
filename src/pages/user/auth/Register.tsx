@@ -58,7 +58,7 @@ const Index = () => {
     return (
         <div className='m-login'>
             <div className='m-login-header'>
-                洪合杯
+                合物创新-洪合杯
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>
