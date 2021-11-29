@@ -8,6 +8,9 @@ const columns = [{
     title: '评委id',
     dataIndex: 'userId'
 }, {
+    title: '评委名称',
+    dataIndex: 'reviewUserName'
+},{
     title: '作品id',
     dataIndex: 'signupId'
 },{

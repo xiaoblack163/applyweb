@@ -14,6 +14,9 @@ const Index = ({children}) => {
 
     const { pathname } = useLocation()
 
+    const { userInfo } = useUserInfo()
+    
+
     const getkeys = () => {
         if (pathname.indexOf('product') > -1) return '2'
         if (pathname.indexOf('info') > -1) return '3'
@@ -35,11 +38,13 @@ const Index = ({children}) => {
             >
                 <div className="m-logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={[getkeys()]}>
-                    <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                        <Link to='/user/product'> 
-                            作品列表
-                        </Link>
-                    </Menu.Item>
+                    {(userInfo as any).complete &&
+                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                            <Link to='/user/product'> 
+                                作品列表
+                            </Link>
+                        </Menu.Item>
+                    }
                     <Menu.Item key="3" icon={<UserOutlined />}>
                         <Link to='/user/info'> 
                             个人信息
@@ -69,4 +74,4 @@ const Index = ({children}) => {
         </Layout>)
 }
 
-export default Index
+export default Index 

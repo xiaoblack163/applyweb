@@ -89,7 +89,7 @@ const Index = () => {
     return (
         <div>
             <PageHeader 
-                title='添加作品'
+                title={id ? '编辑作品': '添加作品'}
                 ghost={false}
                 className='mg-b-10'
                 onBack={() => history.goBack()}
@@ -157,7 +157,24 @@ const Index = () => {
 
                 <FormItem
                     label={'作品图片'}
-                    rules={[{required: true, message: '请上传作品图片'}]}
+                    rules={[{required: true,
+                        validator: (_, value) => {
+                            if (isEmpty(value)) return Promise.reject('请上传作品图片');
+                            let isCheckSize = false
+                            value.some(item => {
+                                const size = get(item, 'originFileObj.size')
+                                const sizeM = size/1024/1024
+                                if (sizeM > 2) {
+                                    isCheckSize = true
+                                    return true
+                                }
+                            })
+                            if (isCheckSize) {
+                                return Promise.reject('请上传小于2m的图片');
+                            }
+                            return Promise.resolve();
+                        }}
+                    ]}
                     name='productPics'
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
@@ -166,12 +183,27 @@ const Index = () => {
                 </FormItem>
                 <FormItem
                     label={'作品视频'}
-                    rules={[{required: true, message: '请上传作品视频'}]}
+                    rules={[{required: true, validator: (_, value) => {
+                        if (isEmpty(value)) return Promise.reject('请上传作品视频');
+                        let isCheckSize = false
+                        value.some(item => {
+                            const size = get(item, 'originFileObj.size')
+                            const sizeM = size/1024/1024
+                            if (sizeM > 10) {
+                                isCheckSize = true
+                                return true
+                            }
+                        })
+                        if (isCheckSize) {
+                            return Promise.reject('请上传小于2m的视频');
+                        }
+                        return Promise.resolve();
+                    }}]}
                     name='productVideos'
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    <UploadVideo title='上传视频' tips='' />
+                    <UploadVideo title='上传视频' tips='请上传小于10m的视频' />
                 </FormItem>
                 <FormItem
                     label={'设计主题及作品说明(中文)'}

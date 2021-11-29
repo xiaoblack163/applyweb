@@ -38,7 +38,7 @@ const Index = () => {
             phone,
             type: 1
         }))
-        if (error) return message.error(error)
+        if (error) return
         message.success('发送成功')
     }
 
@@ -93,9 +93,9 @@ const Index = () => {
                         <FormItem 
                             name='newPwd' 
                             label='新密码'
-                            rules={[{required: true, message: '请输入新密码'}]}
+                            rules={[{required: true, message: '请输入新密码', pattern: /[a-zA-Z]{6,20}$/}]}
                         >
-                            <Input type="password" placeholder="请输入新密码" size='middle' />
+                            <Input type="password" placeholder="请输入新密码（6-20个字符）" size='middle' />
                         </FormItem>
                         <Form.Item>
                             <Row gutter={16}>

@@ -55,11 +55,12 @@ const Index = () => {
 
     const { publicUrl } = useConfiguration()
 
-    const { dataJson } = useRequest(apis.user.fetchUserInfo({}))
+    const { dataJson, revalidate } = useRequest(apis.user.fetchUserInfo({}))
+
+    const { dispatchUserInfo } = useUserInfo()
 
     React.useEffect(() => {
         if (!isEmpty(dataJson)) {
-            
             const {idcardBack, idcardFront, photo, province, city, county, birthday} = dataJson
             const area = [province, city, county]
             const payload = {
@@ -91,6 +92,7 @@ const Index = () => {
         })) as any
         if (respone.error) return 
         message.success('更新成功')
+        dispatchUserInfo(respone.dataJson)
         history.push('/user/info')
         
     } 
@@ -146,12 +148,21 @@ const Index = () => {
                             label={<FormLabel name='照片' en='Photo' required />}
                             rules={[{
                                 required: true, 
-                                message: '请上传照片', 
+                                validator: (_, value) => {
+                                    if (isEmpty(value)) return Promise.reject('请上传图片');
+                                    const size = get(value, '[0].originFileObj.size')
+                                    const sizeM = size/1024/1024
+                                    if (sizeM > 2) {
+                                      return Promise.reject('请上传小于2m的图片');
+                                    }
+                                    return Promise.resolve();
+                                }
                             }]}
                             className='preview'
                             valuePropName="fileList"
                             getValueFromEvent={normFile}
                             name='photo'
+                            
                         >
                             <UploadImg />
                         </FormItem>
@@ -172,6 +183,7 @@ const Index = () => {
                             rules={[{
                                 required: true, 
                                 message: '请输入身份证号码', 
+                                
                             }]}
                             name='idcard'
                         >
@@ -183,6 +195,18 @@ const Index = () => {
                             className='preview'
                             valuePropName="fileList"
                             getValueFromEvent={normFile}
+                            rules={[{
+                                required: true, 
+                                validator: (_, value) => {
+                                    if (isEmpty(value)) return Promise.reject('请请上传身份证正面照');
+                                    const size = get(value, '[0].originFileObj.size')
+                                    const sizeM = size/1024/1024
+                                    if (sizeM > 2) {
+                                      return Promise.reject('请上传小于2m的图片');
+                                    }
+                                    return Promise.resolve();
+                                }
+                            }]}
                         >
                             <UploadImg />
                         </FormItem>
@@ -192,6 +216,18 @@ const Index = () => {
                             className='preview'
                             valuePropName="fileList"
                             getValueFromEvent={normFile}
+                            rules={[{
+                                required: true, 
+                                validator: (_, value) => {
+                                    if (isEmpty(value)) return Promise.reject('请上传身份证反面照');
+                                    const size = get(value, '[0].originFileObj.size')
+                                    const sizeM = size/1024/1024
+                                    if (sizeM > 2) {
+                                      return Promise.reject('请上传小于2m的图片');
+                                    }
+                                    return Promise.resolve();
+                                }
+                            }]}
                         >
                             <UploadImg />
                         </FormItem>
@@ -268,6 +304,7 @@ const Index = () => {
                             rules={[{
                                 required: true, 
                                 message: '请输入微信号', 
+                                pattern: /^[a-zA-Z][a-zA-Z\d_-]{5,19}$/
                             }]}
                         >
                             <Input />
@@ -278,6 +315,7 @@ const Index = () => {
                             rules={[{
                                 required: true, 
                                 message: '请输入邮箱', 
+                                type: 'email'
                             }]}
                         >
                             <Input />
@@ -318,13 +356,14 @@ const Index = () => {
                             rules={[{
                                 required: true, 
                                 message: '请输入联系方式', 
+                                pattern: /^1[3456789]\d{9}$/
                             }]}
                         >
                             <Input />
                         </FormItem>
                     </Col>
                 </Row>
-                <div className='tc' style={{width: '328px', margin: '0 auto'}}>
+                <div className='tc' style={{width: '300px', margin: '0 auto'}}>
                     <Button
                         type="primary"
                         htmlType="submit"

@@ -117,50 +117,51 @@ const Index = () => {
             >
                 <FormItem
                     label={'原创性20%'}
-                    rules={[{required: true, message: '请评分1-20'}]}
+                    rules={[{required: true, message: '请输入1-20评分', pattern: /^([01]?\d|20)$/ }]}
                     name='itemA'
                 >
-                    <Input placeholder='请评分1-20' max={20} min={1}  suffix='分'  />
+                    <Input placeholder='请输入1-20评分' disabled={dataJson.save == 1}  suffix='分'  />
                 </FormItem>
 
                 <FormItem
                     label={'创新性20%'}
-                    rules={[{required: true, message: '请评分1-20'}]}
+                    rules={[{required: true, message: '请输入1-20评分', pattern: /^([01]?\d|20)$/}]}
                     name='itemB'
                 >
-                    <Input placeholder='请评分1-20' max={20} min={1} suffix='分'   />
+                    <Input placeholder='请输入1-20评分' disabled={dataJson.save == 1} suffix='分'   />
                 </FormItem>
 
                 <FormItem
                     label={'美观性20%'}
-                    rules={[{required: true, message: '请评分1-20'}]}
+                    rules={[{required: true, message: '请输入1-20评分', pattern: /^([01]?\d|20)$/}]}
                     name='itemC'
                 >
-                    <Input placeholder='请评分1-20' max={20} min={1} suffix='分'  />
+                    <Input placeholder='请输入1-20评分' disabled={dataJson.save == 1} suffix='分'  />
                 </FormItem>
 
                 <FormItem
                     label={'系列性15%'}
-                    rules={[{required: true, message: '请评分1-15'}]}
+                    rules={[{required: true, message: '请输入1-15评分', pattern:  /^([01]?[0-5])$/}]}
                     name='itemD'
                 >
-                    <Input placeholder='请评分1-15' max={15} min={1} suffix='分'  />
+                    <Input placeholder='请输入1-15评分' disabled={dataJson.save == 1}  suffix='分'  />
                 </FormItem>
 
                 <FormItem
                     label={'工业性15%'}
-                    rules={[{required: true, message: '请评分1-15'}]}
+                    rules={[{required: true, message: '请输入1-15评分', pattern: /^([01]?[0-5])$/}]}
                     name='itemE'
                 >
-                    <Input placeholder='请评分1-15' max={15} min={1}  suffix='分'  />
+                    <Input placeholder='请输入1-15评分' disabled={dataJson.save == 1} suffix='分'  />
                 </FormItem>
 
                 <FormItem
                     label={'商业价值10%'}
-                    rules={[{required: true, message: '请评分1-10'}]}
+                    rules={[{required: true, message: '请输入1-10评分', pattern: /^([1-9]|10)$/}]}
                     name='itemF'
+                    
                 >
-                    <Input placeholder='请评分1-20' max={10} min={1}  suffix='分' />
+                    <Input placeholder='请输入1-10评分' disabled={dataJson.save == 1}  suffix='分' />
                 </FormItem>
                 <FormItem
                     noStyle

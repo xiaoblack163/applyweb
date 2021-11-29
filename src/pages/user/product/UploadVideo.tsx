@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Upload } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { Upload, Button } from 'antd'
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons'
 import { useConfiguration } from '@friday/core'
 import tokenInstance from 'src/services/tokenService'
 import { get } from 'lodash'
@@ -42,15 +42,12 @@ const Qrcode = (props) => {
         <div>
             <div className='clearfix'>
                 <Upload
-                    listType="picture-card"
+                    listType='picture'
                     className="m-avatar-uploader"
                     {...uploadprops}
                 >
                     
-                    <div>
-                        <PlusOutlined />
-                        <div style={{ marginTop: 8 }}>{title}</div>
-                    </div>
+                    <Button icon={<UploadOutlined />}>{title}</Button>
                 </Upload>
             </div>
             <div style={{ fontSize: '10px', color: '#999', marginTop: 10 }} >{tips}</div>
