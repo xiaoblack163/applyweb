@@ -34,4 +34,6 @@ export default class Apis {
 
     public productInfo = createGetApi<any>({url: `${this.prefix_config}/signup/info`})
 
+    public deleteId = createGetApi<any>({url: `${this.prefix_config}/signup/del`})
+
 }

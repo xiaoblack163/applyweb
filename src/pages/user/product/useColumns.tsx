@@ -1,10 +1,25 @@
 import React from "react";
-import { Divider, Space, Popover } from 'antd'
+import { Divider, Space, Popover, Modal, message } from 'antd'
 import { Link } from '@friday/router'
 import { get } from 'lodash'
+import { dispatchAsync, useRequest } from '@friday/async'
+import { apis } from "src/apiStore";
 
 
-const useColumns = ( publicUrl) => {
+const useColumns = ( publicUrl, revalidate) => {
+
+    const deleteId = (id) => {
+        Modal.confirm({
+            title: '确定要删除吗？',
+            onOk: async () => {
+                const {error} = await dispatchAsync(apis.user.deleteId({id}))
+                if (error) return 
+                revalidate()
+                message.success('删除成功')
+            }
+        })
+    }
+
     return React.useMemo(() => {
         const columns = [{
             title: '作品名称',
@@ -46,7 +61,7 @@ const useColumns = ( publicUrl) => {
                                 编辑
                             </Link >
                         </span>
-                        <span className='operation'>删除 </span>
+                        <span className='operation' onClick={() => deleteId(record.id)}>删除 </span>
                     </Space>
                 )
             }

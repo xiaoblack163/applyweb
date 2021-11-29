@@ -13,9 +13,10 @@ const Index = () => {
 
     const { publicUrl } = useConfiguration()
 
-    const columns = useColumns(publicUrl)
 
-    const {dataArray, isValidating} = useRequest(apis.user.productList({}))
+    const {dataArray, isValidating, revalidate} = useRequest(apis.user.productList({}))
+
+    const columns = useColumns(publicUrl, revalidate)
 
 
     return (
