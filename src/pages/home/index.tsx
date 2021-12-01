@@ -16,19 +16,19 @@ const Home = () => {
 			<div className='m-home-nav'>
 				<Row gutter={16}>
 					<Col xs={6} md={3}  className='tc'>
-						<a>大赛简介</a>
+						<a href='#p1'>大赛简介</a>
 					</Col>
 					<Col xs={6} md={3}   className='tc'>
-						<a>参赛要求</a>
+						<a href='#p2'>参赛要求</a>
 					</Col>
 					<Col xs={6} md={3}  className='tc'>
-						<a>奖项设置</a>
+						<a href='#p3'>奖项设置</a>
 					</Col>
 					<Col xs={6} md={3} className='tc'>
-						<a>大赛流程</a>
+						<a href='#p4'>大赛流程</a>
 					</Col>
 					<Col xs={6} md={3} className='tc'>
-						<a>组织机构</a>
+						<a href='#p5'>组织机构</a>
 					</Col>
 					<Col xs={6} md={3} className='tc'>
 						<a href='/user/login'>立即参赛</a>
@@ -42,7 +42,7 @@ const Home = () => {
 				</Row>
 			</div>
 			<div className='m-home-main'>
-				<div className='m-home-section'>
+				<div className='m-home-section' id='p1'>
 					<h3>大赛简介</h3>
 					<p>
 						文明如火，烛照人类前行；
@@ -63,7 +63,7 @@ const Home = () => {
 						2021年11月8日正式启动，截稿2022年4月15日24:00。
 					</p>
 				</div>
-				<div className='m-home-section'>
+				<div className='m-home-section' id='p2'>
 					<h3>参赛要求</h3>
 					<p>
 					1.国内外注册服装设计生产企业、设计师，服装设计机构、品牌设计师，高校服装、设计类师生，以及热爱毛针织服装设计的社会各界人士均可参赛（所有参赛企业及参赛者无不良记录）。
@@ -99,13 +99,13 @@ const Home = () => {
 					(3)独创钩编可作为配饰与服装一起列入参赛范围（加分项）。
 					</p>
 				</div>
-				<div className='m-home-section'>
+				<div className='m-home-section' id='p3'>
 					<h3>奖项设置</h3>
 					<p className='tc'>
 						<img src={pic_one} style={{width: '100%'}} />
 					</p>
 				</div>
-				<div className='m-home-section'>
+				<div className='m-home-section' id='p4'>
 					<h3>大赛流程</h3>
 					
 					<p className='tc'>参赛者通过以下步骤进行作品上传，作品提交成功即报名成功</p>
@@ -116,7 +116,7 @@ const Home = () => {
 						<li>报名成功</li>
 					</ul>
 				</div>
-				<div className='m-home-section'>
+				<div className='m-home-section' id='p5'>
 					<h3>组织机构</h3>
 					<p className='tc'>
 						<img src={pic_two} style={{width: '100%'}} />
