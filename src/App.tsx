@@ -12,10 +12,10 @@ const App = ({ history }) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/404"  component={NotFound} />  
+        {/* <Route path="/404"  component={NotFound} />  
         <Route path="/admin" component={AdminRouter} />  
-        <Route path="/user" component={userRouter} />  
-        <Route path='/' exact component={Home} />
+        <Route path="/user" component={userRouter} />   */}
+        <Route path='/' exact component={NotFound} />
       </Switch>
     </Router>
   )
