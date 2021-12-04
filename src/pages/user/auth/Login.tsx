@@ -44,7 +44,7 @@ const Index = () => {
     return (
         <div className='m-login'>
             <div className='m-login-header'>
-                洪合杯
+                <a href='/'>洪合杯</a>
             </div>
             <div className='m-login-content'>
                 <div className='m-login-main'>

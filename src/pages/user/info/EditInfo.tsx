@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message, PageHeader, Card} from 'antd'
+import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message, PageHeader, Card, Select} from 'antd'
 import FormLabel from './FormLabel'
 import options from 'src/common/city.json'
+import AreaJson from 'src/common/area.json'
 import UploadImg from './UploadImg'
 import { useHistory } from '@friday/router'
 import { useApiSelector, useUserInfo } from 'src/hooks'
@@ -75,6 +76,7 @@ const Index = () => {
             form.setFieldsValue(payload)
         }
     }, [dataJson]) 
+    
 
     const onFinish = async () => {
         const values = await form.validateFields()
@@ -82,7 +84,7 @@ const Index = () => {
         const [province, city, county] = area
         const respone = await dispatchAsync(apis.user.completeInfo({
             ...omit(values, ['birthday', 'area', 'idcardBack', 'idcardFront', 'photo']),
-            birthday: moment(birthday).format('YYYY/MM/DD'),
+            birthday: moment(birthday).format('YYYY-MM-DD'),
             province,
             city,
             county,
@@ -114,13 +116,6 @@ const Index = () => {
             >
                 <Row gutter={16}>
                     <Col span={12} xs={24} md={12}>
-                        <FormItem
-                            label={<FormLabel name='用户名' en='User name' required />}
-                            rules={[{required: true, message: '请输入用户名'}]}
-                            name='username'
-                        >
-                            <Input placeholder='请输入用户名' />
-                        </FormItem>
                         <FormItem
                             label={<FormLabel name='姓名' en='Name' required />}
                             rules={[{
@@ -164,7 +159,7 @@ const Index = () => {
                             name='photo'
                             
                         >
-                            <UploadImg />
+                            <UploadImg tips = '上传格式jpg、png、jpeg，大小不超过2M的1寸免冠照'/>
                         </FormItem>
                     </Col>
                     <Col span={12} xs={24} md={12}>
@@ -190,47 +185,61 @@ const Index = () => {
                             <Input />
                         </FormItem>
                         <FormItem
-                            label={<FormLabel name='身份证正面照' en='ID Card Copy' required />}
-                            name='idcardFront'
-                            className='preview'
-                            valuePropName="fileList"
-                            getValueFromEvent={normFile}
-                            rules={[{
-                                required: true, 
-                                validator: (_, value) => {
-                                    if (isEmpty(value)) return Promise.reject('请请上传身份证正面照');
-                                    const size = get(value, '[0].originFileObj.size')
-                                    const sizeM = size/1024/1024
-                                    if (sizeM > 2) {
-                                      return Promise.reject('请上传小于2m的图片');
-                                    }
-                                    return Promise.resolve();
-                                }
-                            }]}
+                            label={<FormLabel name='身份证照' en='ID Card Copy' required />}
+                            className='m-info-card'
+                            style={{marginBottom: 0}}
                         >
-                            <UploadImg />
-                        </FormItem>
-                        <FormItem
-                            label={<FormLabel name='身份证反面照' en='ID Card Copy' required />}
-                            name='idcardBack'
-                            className='preview'
-                            valuePropName="fileList"
-                            getValueFromEvent={normFile}
-                            rules={[{
-                                required: true, 
-                                validator: (_, value) => {
-                                    if (isEmpty(value)) return Promise.reject('请上传身份证反面照');
-                                    const size = get(value, '[0].originFileObj.size')
-                                    const sizeM = size/1024/1024
-                                    if (sizeM > 2) {
-                                      return Promise.reject('请上传小于2m的图片');
+                            <Row>
+                            <Col span={12}>
+                                <FormItem
+                                    name='idcardFront'
+                                    className='preview'
+                                    valuePropName="fileList"
+                                    getValueFromEvent={normFile}
+                                    style={{marginBottom: 0}}
+                                    rules={[{
+                                        required: true, 
+                                        validator: (_, value) => {
+                                            if (isEmpty(value)) return Promise.reject('请请上传身份证正面照');
+                                            const size = get(value, '[0].originFileObj.size')
+                                            const sizeM = size/1024/1024
+                                            if (sizeM > 2) {
+                                            return Promise.reject('请上传小于2m的图片');
+                                            }
+                                            return Promise.resolve();
+                                        }
+                                    }]}
+                                >
+                                    <UploadImg title='上传身份证正面照'/>
+                                </FormItem>
+                            </Col>
+                            <Col span={12}>
+                            <FormItem
+                                name='idcardBack'
+                                className='preview'
+                                valuePropName="fileList"
+                                getValueFromEvent={normFile}
+                                style={{marginBottom: 0}}
+                                rules={[{
+                                    required: true, 
+                                    validator: (_, value) => {
+                                        if (isEmpty(value)) return Promise.reject('请上传身份证反面照');
+                                        const size = get(value, '[0].originFileObj.size')
+                                        const sizeM = size/1024/1024
+                                        if (sizeM > 2) {
+                                        return Promise.reject('请上传小于2m的图片');
+                                        }
+                                        return Promise.resolve();
                                     }
-                                    return Promise.resolve();
-                                }
-                            }]}
-                        >
-                            <UploadImg />
+                                }]}
+                            >
+                                <UploadImg  title='上传身份证反面照' />
+                            </FormItem>
+                            </Col>
+                            </Row>
+                            <div style={{ fontSize: '10px', color: '#999', marginTop: 10 }} >上传格式jpg、png、jpeg，大小不超过2M</div>
                         </FormItem>
+                        
                     </Col>
                 </Row>
 
@@ -247,20 +256,54 @@ const Index = () => {
                             <Input />
                         </FormItem>
                         <FormItem
-                            label={<FormLabel name='籍贯' en='Native place' required />}
-                            name='area'
+                            label={<FormLabel name='国籍' en='Nation' required />}
+                            name='nationality'
                             rules={[{
                                 required: true, 
-                                message: '请选择籍贯', 
+                                message: '请选择国籍', 
                             }]}
+                           
                         >
-                            <Cascader  options={options} />
+                            <Select  showSearch optionFilterProp="children" >
+                                {AreaJson.map((item, index) => {
+                                    return (
+                                        <Select.OptGroup label={item.name} key={item.name+index}>
+                                            {item.children.map((j, k) => {
+                                                return <Select.Option  value={j.name} key={j.name+k} > {j.name}</Select.Option>
+                                            })}
+                                        </Select.OptGroup>
+                                    )
+                                })}
+                            </Select>
                         </FormItem>
                         <FormItem
-                            label={<FormLabel name='院校名称' en='Educational background' required />}
+                            noStyle
+							shouldUpdate={(prevValues, currentValues) => ( prevValues.nationality !== currentValues.nationality )}
+                        >
+                            {({ getFieldValue }) => {
+                                const open = getFieldValue('nationality')
+                                if (open != '中国') return
+                                return ( 
+                                    <FormItem
+                                        label={<FormLabel name='籍贯' en='Native place' required />}
+                                        name='area'
+                                        rules={[{
+                                            required: true, 
+                                            message: '请选择籍贯', 
+                                        }]}
+                                    >
+                                        <Cascader  options={options} />
+                                    </FormItem>
+                                ) 
+                            }}
+                            
+                        </FormItem>
+                      
+                        <FormItem
+                            label={<FormLabel name='院校名称' en='Educational background'  />}
                             name='school'
                             rules={[{
-                                required: true, 
+                                required: false, 
                                 message: '请输入院校名称', 
                             }]}
                         >
@@ -283,10 +326,10 @@ const Index = () => {
                             <Input />
                         </FormItem>
                         <FormItem
-                            label={<FormLabel name='工作单位' en='Company'  required />}
+                            label={<FormLabel name='工作单位' en='Company'   />}
                             name='employer'
                             rules={[{
-                                required: true, 
+                                required: false, 
                                 message: '请输入工作单位', 
                             }]}
                         >
@@ -299,10 +342,10 @@ const Index = () => {
                             <Input />
                         </FormItem>
                         <FormItem
-                            label={<FormLabel name='微信号' en='WeChat'  required/>}
+                            label={<FormLabel name='微信号' en='WeChat'  />}
                             name='wechat'
                             rules={[{
-                                required: true, 
+                                required: false, 
                                 message: '请输入微信号', 
                                 pattern: /^[a-zA-Z][a-zA-Z\d_-]{5,19}$/
                             }]}
@@ -332,7 +375,7 @@ const Index = () => {
                             label={<FormLabel name='工作经历' en='Work experience'  />}
                             name='workExperience'
                         >
-                            <Input.TextArea />
+                            <Input.TextArea rows={5}  />
                         </FormItem>
                         <FormItem
                             label={<FormLabel name='获奖经历' en='Award experience'  />}
@@ -348,7 +391,7 @@ const Index = () => {
                                 message: '请输入通信地址', 
                             }]}
                         >
-                            <Input.TextArea />
+                            <Input.TextArea  rows={5}  />
                         </FormItem>
                         <FormItem
                             label={<FormLabel name='联系方式' en='Contact' required />}

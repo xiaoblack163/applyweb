@@ -93,7 +93,22 @@ const Index = () => {
                     </Space> 
                 </Descriptions.Item>
                 <Descriptions.Item label="设计主题及作品说明(中文)" span={3}>
-                    {get(dataJson, 'productDesc') || '--'}
+                    {/* {get(dataJson, 'productDesc') || '--'} */}
+                    <div>
+                        <span style={{color: '#666'}}>原创性:</span> {get(dataJson, 'explainA') || '--'}
+                    </div>
+                    <div>
+                        <span style={{color: '#666'}}>文化特性:</span> {get(dataJson, 'explainB') || '--'}
+                    </div>
+                    <div>
+                        <span style={{color: '#666'}}>数字化设计:</span> {get(dataJson, 'explainC') || '--'}
+                    </div>
+                    <div>
+                        <span style={{color: '#666'}}>工艺特点:</span> {get(dataJson, 'explainD') || '--'}
+                    </div>
+                    <div>
+                        <span style={{color: '#666'}}>市场竞争力:</span> {get(dataJson, 'explainE') || '--'}
+                    </div>
                 </Descriptions.Item>
                 <Descriptions.Item label="设计主题及作品说明(英文)" span={3}>
                     {get(dataJson, 'productDescEn') || '--'}
@@ -116,7 +131,7 @@ const Index = () => {
                 className='mg-t-30'
             >
                 <FormItem
-                    label={'原创性20%'}
+                    label={'原创性(20分)'}
                     rules={[{required: true, message: '请输入1-20评分', pattern: /^([01]?\d|20)$/ }]}
                     name='itemA'
                 >
@@ -124,7 +139,7 @@ const Index = () => {
                 </FormItem>
 
                 <FormItem
-                    label={'创新性20%'}
+                    label={'创新性(20分)'}
                     rules={[{required: true, message: '请输入1-20评分', pattern: /^([01]?\d|20)$/}]}
                     name='itemB'
                 >
@@ -132,7 +147,7 @@ const Index = () => {
                 </FormItem>
 
                 <FormItem
-                    label={'美观性20%'}
+                    label={'美观性(20分)'}
                     rules={[{required: true, message: '请输入1-20评分', pattern: /^([01]?\d|20)$/}]}
                     name='itemC'
                 >
@@ -140,7 +155,7 @@ const Index = () => {
                 </FormItem>
 
                 <FormItem
-                    label={'系列性15%'}
+                    label={'系列性(15分)'}
                     rules={[{required: true, message: '请输入1-15评分', pattern:  /^([01]?[0-5])$/}]}
                     name='itemD'
                 >
@@ -148,7 +163,7 @@ const Index = () => {
                 </FormItem>
 
                 <FormItem
-                    label={'工业性15%'}
+                    label={'工业性(15分)'}
                     rules={[{required: true, message: '请输入1-15评分', pattern: /^([01]?[0-5])$/}]}
                     name='itemE'
                 >
@@ -156,7 +171,7 @@ const Index = () => {
                 </FormItem>
 
                 <FormItem
-                    label={'商业价值10%'}
+                    label={'商业价值(10分)'}
                     rules={[{required: true, message: '请输入1-10评分', pattern: /^([1-9]|10)$/}]}
                     name='itemF'
                     
@@ -183,6 +198,14 @@ const Index = () => {
                             </Form.Item>
                         ) 
                     }}
+                </FormItem>
+                <FormItem
+                    label={'评委点评'}
+                    rules={[{required: true, message: '请输入您的点评'}]}
+                    name='comment'
+                    
+                >
+                    <Input.TextArea  rows={6} disabled={dataJson.save == 1} />
                 </FormItem>
                 <div className='tc' style={{width: '300px', margin: '0 auto'}}>
                     <Row gutter={16}>
