@@ -7,7 +7,8 @@ const configuration: IConfiguration = {
 		'localhost:3009',
 		'101.42.95.249:9005',
 		'test.ruien.work',
-		'test.ruien.work:9005'
+		'test.ruien.work:9005',
+		'101.35.52.7',
 	],
 	publicUrl: {
 		OPEN_API_URL: combineUrl(upstreams.production.OPEN_API_URL, BaseUrl.OPEN_API_URL),
