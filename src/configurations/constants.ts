@@ -6,7 +6,7 @@ export const upstreams = {
 		OPEN_API_URL: '101.42.95.249:8088',
 	},
 	production: {
-		OPEN_API_URL: '101.42.95.249:8088',
+		OPEN_API_URL: '101.35.52.7:8088',
 	}
 
 }
