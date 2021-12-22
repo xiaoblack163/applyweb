@@ -10,6 +10,8 @@ const {
 	addWebpackPlugin
 } = require('customize-cra')
 
+const antdVars  = require('./src/styles/antdVars')
+
 const {
 	devServerCorsOrHeader,
 	OverrideMicroOutPut,
@@ -49,14 +51,19 @@ module.exports = {
 			libraryDirectory: 'es',
 			style: true,
 		}),
+		// antd 主题
+		addLessLoader({
+			javascriptEnabled: true,
+			// modifyVars: antdVars
+			modifyVars: {
+				'root-entry-name': 'default',
+				...antdVars
+				}
+		}),
 		// 按需加载
 		fixBabelImports('lodash', {
 			libraryDirectory: '',
 			camel2DashComponentName: false
-		}),
-		// less lader
-		addLessLoader({
-			javascriptEnabled: true,
 		}),
 		// 微服务暴露出口
 		OverrideMicroOutPut(packageName),

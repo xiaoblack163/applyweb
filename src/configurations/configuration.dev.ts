@@ -7,6 +7,7 @@ import combineUrl from './combineUrl'
 const configuration: IConfiguration = {
 	whiteHosts: [
 		'localhost:3000',
+		'localhost:3001',
 	],
 	publicUrl: {
 		OPEN_API_URL: combineUrl(upstreams.development.OPEN_API_URL, BaseUrl.OPEN_API_URL),
