@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Space, Popover, Modal, message } from 'antd'
+import { Divider, Space, Popover, Modal, message, Button } from 'antd'
 import { Link } from '@friday/router'
 import { get } from 'lodash'
 import { dispatchAsync, useRequest } from '@friday/async'
@@ -56,12 +56,12 @@ const useColumns = ( publicUrl, revalidate) => {
             render: (text, record) => {
                 return (
                     <Space split={<Divider />}>  
-                        <span className='operation'>
+                        <Button type="primary" size="small">
                             <Link to={`/user/product/edit/${record.id}`}>
                                 编辑
                             </Link >
-                        </span>
-                        <span className='operation' onClick={() => deleteId(record.id)}>删除 </span>
+                        </Button>
+                        <Button size="small" onClick={() => deleteId(record.id)}>删除 </Button>
                     </Space>
                 )
             }

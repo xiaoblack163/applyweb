@@ -58,7 +58,7 @@ const Index = () => {
                             <Select.Option value={'毛衫文化品牌类'}>毛衫文化品牌类</Select.Option >
                         </Select>
                     </div>
-                    <div>
+                    <div className="mg-l-20">
                         参赛方向： 
                         <Select style={{width: '140px'}} allowClear placeholder='请选择参赛方向' onChange={(e) => setState(draft => { draft.productType = e as any })}>
                             <Select.Option value={'个人组'}>个人组</Select.Option>
@@ -71,6 +71,7 @@ const Index = () => {
             <Table 
                 columns={columns as any}
                 dataSource={list}
+                size={'middle'}
                 scroll={{
                     x: 'max-content'
                 }}

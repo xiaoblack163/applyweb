@@ -1,5 +1,6 @@
 .m-login{
-    background: #f0f2f5;
+    background: url("../../home/images/login_bg.jpg");
+    background-size: cover;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -11,22 +12,52 @@
         padding: 10px 20px;
         
     }
-    .m-login-content{
-        flex: 1;
-        justify-content: center;
-        align-items: center;
+    .m-login-b{
         display: flex;
+        align-content: center;
+        height: 100vh;
+        margin-left: 100px;
+        &>div{
+            flex: 1
+        }
+        
+    }
+    .m-login-l {
+        background: url("../../home/images/login-l.png") no-repeat center;
+        background-size: 100%;
+        padding-left: 100px;
+    }
+    .m-login-content{
+        .m-login-bg{
+            flex-basis: 368px;
+            background: url("../../home/images/login-r.png") repeat left bottom;
+            background-size: 100%;
+            border: 1px solid #fff
+        }
         .m-login-main{
-            width: 328px;
-            margin: 0 auto;
-            padding-top: 24px;
+            background: #fff;
+            position: relative;
+            top: -20px;
+            left: 20px;
+            border-radius: 2px;
+            .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before{
+                content: "";
+            }
         }
     }
     .m-title{
         font-weight: 400;
         font-size: 18px;
-        color: #666;
-        margin-bottom: 20px;
-        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif
+        background: #FFFFFF;
+        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        padding: 15px 0;
+        text-align: center;
+        img{
+            width: 40%;
+        }
+    }
+    .m-login-form{
+        background:#F2F2F2;
+        padding: 20px;
     }
 }

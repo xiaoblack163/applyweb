@@ -6,6 +6,7 @@ import { useHistory, useParams } from '@friday/router'
 import { useApiSelector, useUserInfo } from 'src/hooks'
 import { dispatchAsync } from '@friday/async'
 import TokenService from 'src/services/tokenService'
+import loginLoign from 'src/pages/home/images/login-m.png'
 import './index.less'
 
 const FormItem = Form.Item
@@ -39,12 +40,16 @@ const Index = () => {
 
     return (
         <div className='m-login'>
-            <div className='m-login-header'>
-                <a href='/'>洪合杯</a>
+            <div className='m-login-b'>
+            <div className='m-login-l'>
             </div>
             <div className='m-login-content'>
+                <div className='m-login-bg'>
                 <div className='m-login-main'>
-                    <h3 className='m-title'>登录</h3>
+                    <h3 className='m-title'>
+                        <img src={loginLoign} />
+                    </h3>
+                    <div className='m-login-form'>
                     <Form 
                         form={form}
                         onFinish={onFinish}
@@ -77,6 +82,9 @@ const Index = () => {
                         </Form.Item>
                     </Form>
                 </div>
+                </div>
+                </div>
+            </div>
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import React  from "react";
-import { Form, Input, Row, Col, Radio, Button, DatePicker, Cascader, message, PageHeader, Card} from 'antd'
+import { Form, Input, Row, Col, Radio, Button, DatePicker, Divider, message, PageHeader, Card} from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { useHistory, useParams } from '@friday/router'
@@ -112,6 +112,7 @@ const Index = () => {
                     rules={[{required: true, message: '请选择参赛类别'}]}
                     name='productType'
                     className='pd-t-20'
+                    initialValue={'个人组'}
                 >
                     <Radio.Group>
                         <Radio value={'个人组'}>个人组</Radio>
@@ -119,7 +120,7 @@ const Index = () => {
                         <Radio value={'企业组'}>企业组</Radio>
                     </Radio.Group>
                 </FormItem>
-
+                <Divider />
                 <FormItem
                     label={'参赛方向'}
                     rules={[{required: true, message: '请选择参赛方向'}]}
@@ -131,7 +132,7 @@ const Index = () => {
                         <Radio value={'毛衫文化品牌类'}>毛衫文化品牌类</Radio>
                     </Radio.Group>
                 </FormItem>
-
+                <Divider />
              
                 <FormItem
                     label={'作品名称(中文)'}
@@ -140,6 +141,7 @@ const Index = () => {
                 >
                     <Input placeholder='请输入作品名称(中文)' />
                 </FormItem>
+                <Divider />
                 <FormItem
                     label={'作品名称(英文)'}
                     rules={[{required: true, message: '请输入作品名称(英文)'}]}
@@ -147,6 +149,7 @@ const Index = () => {
                 >
                     <Input placeholder='请输入作品名称(英文)' />
                 </FormItem>
+                <Divider />
                 <FormItem
                     label={'指导教师'}
                     rules={[{required: false, message: '请输入指导教师'}]}
@@ -154,6 +157,7 @@ const Index = () => {
                 >
                     <Input placeholder='请输入指导教师' />
                 </FormItem>
+                <Divider />
 
                 <FormItem
                     label={'作品图片'}
@@ -181,6 +185,7 @@ const Index = () => {
                 >
                     <UploadImg title='上传图片' tips='上传格式jpg、png、jpeg，大小不超过2M，A3尺寸，分辨率300dpi，一套作品2-3张图片' />
                 </FormItem>
+                <Divider />
                 <FormItem
                     label={'作品视频'}
                     rules={[{required: false, validator: (_, value) => {
@@ -205,6 +210,7 @@ const Index = () => {
                 >
                     <UploadVideo title='上传视频' tips='请上传小于10m的视频' />
                 </FormItem>
+                <Divider />
                 <FormItem
                     label={'设计主题及作品说明(中文)'}
                     rules={[{required: false, message: '请输入设计主题及作品说明(中文)'}]}

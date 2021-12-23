@@ -1,9 +1,10 @@
 import React from 'react'
 import { Layout, Menu } from 'antd'
-import { UploadOutlined, UserOutlined, VideoCameraOutlined, LogoutOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import { FormOutlined, UserOutlined, LockOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Link } from '@friday/router'
 import { useUserInfo } from 'src/hooks'
 import { useLocation } from '@friday/router'
+import menuLogo from '../../home/images/menu_logo.png'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -36,10 +37,12 @@ const Index = ({children}) => {
                     console.log(collapsed, type);
                 }}
             >
-                <div className="m-logo" />
+                <div className="m-logo" >
+                    <img src={menuLogo} />
+                </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={[getkeys()]}>
                     {(userInfo as any).complete &&
-                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                        <Menu.Item key="2" icon={<FormOutlined />}>
                             <Link to='/user/product'> 
                                 作品列表
                             </Link>
@@ -50,7 +53,7 @@ const Index = ({children}) => {
                             个人信息
                         </Link>
                     </Menu.Item>
-                    <Menu.Item key="4" icon={<EyeInvisibleOutlined />}>
+                    <Menu.Item key="4" icon={<LockOutlined />}>
                         <Link to='/user/password'> 
                         修改密码
                         </Link>
@@ -62,14 +65,14 @@ const Index = ({children}) => {
                     </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout style={{minHeight: '100vh' }}>
+            <Layout style={{minHeight: '100vh' }} className='sider-main'>
                 <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '16px 16px 0', minWidth: 328 }} >
                     <div className="site-layout-background" style={{ minHeight: 360 }}>
                         {children}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>洪合杯 ©2021 Created by front </Footer>
+                {/* <Footer style={{ textAlign: 'center' }}>洪合杯 ©2021 Created by front </Footer> */}
             </Layout>
         </Layout>)
 }

@@ -27,13 +27,16 @@ const Index = () => {
                 className='mg-b-10'
             />
             <Card hoverable>
-            <div className='mg-b-20'>
-                <Button type='primary'><Link to='/user/product/add' >添加作品</Link></Button>
+            <div className='mg-b-20 clearfix'>
+                <div className="fr">
+                    <Button type='primary'><Link to='/user/product/add' >添加作品</Link></Button>
+                </div>
             </div>
-
             <Table 
                 columns={columns as any}
                 dataSource={dataArray}
+                bordered={false}
+                size="middle"
                 loading={isValidating}
                 rowKey='id'
                 scroll={{

@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd'
 import { FileOutlined, FileDoneOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Link, useLocation} from '@friday/router'
 import useUserInfo from 'src/hooks/useUserInfo'
+import menuLogo from '../../home/images/menu_logo.png'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -38,7 +39,9 @@ const Index = ({children}) => {
                     console.log(collapsed, type);
                 }}
             >
-                <div className="m-logo" />
+                <div className="m-logo" >
+                    <img src={menuLogo} />
+                </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={[getkeys()]}>
                     
                     {type == 2 && 
@@ -76,14 +79,14 @@ const Index = ({children}) => {
                     </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout style={{minHeight: '100vh'}}>
+            <Layout style={{minHeight: '100vh'}} className='sider-main'>
                 <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '16px 16px 0', minWidth: 328 }} >
                     <div className="site-layout-background" style={{ minHeight: 360 }}>
                         {children}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>洪合杯 ©2021 Created by front </Footer>
+                {/* <Footer style={{ textAlign: 'center' }}>洪合杯 ©2021 Created by front </Footer> */}
             </Layout>
         </Layout>)
 }

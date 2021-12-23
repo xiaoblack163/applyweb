@@ -6,6 +6,7 @@ import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
 import { useConfiguration } from '@friday/core'
 import ModalVideo from './ModalVideo'
+import './style.less'
 
 const FormItem = Form.Item
 
@@ -54,12 +55,11 @@ const Index = () => {
             <PageHeader 
                 title='作品评分'
                 ghost={false}
-                className='mg-b-10'
                 onBack={() => history.goBack()}
             />
-            <Card hoverable>
-            <Alert message= '参赛作品信息' />
-            <Descriptions bordered  className='mg-t-20 mg-b-20' layout="vertical">
+            <Card hoverable bodyStyle={{padding: 0}}>
+            <Alert message= '参赛作品信息' className="m-fix-alert" banner  showIcon={false} />
+            <Descriptions bordered  className='mg-t-20 mg-b-20' layout="vertical" size={'small'}>
                 <Descriptions.Item label="作品编号">{get(dataJson, 'id')}</Descriptions.Item>
                 <Descriptions.Item label="参赛类别">{get(dataJson, 'entryDirection')}</Descriptions.Item>
                 <Descriptions.Item label="参赛方向">{get(dataJson, 'productType')}</Descriptions.Item>
@@ -115,8 +115,12 @@ const Index = () => {
                 </Descriptions.Item>
                 
             </Descriptions>
+            
+            <div className="m-review-line">
 
-            <Alert message= '评分' />
+            </div>
+            
+            <h3>评分</h3>
 
             <Form
                 form={form}

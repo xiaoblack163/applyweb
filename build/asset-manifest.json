@@ -1,28 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.af051349.chunk.css",
-    "main.js": "/static/js/main.8df6bf2c.chunk.js",
-    "main.js.map": "/static/js/main.8df6bf2c.chunk.js.map",
+    "main.css": "/static/css/main.3fbd866b.chunk.css",
+    "main.js": "/static/js/main.227bf3d4.chunk.js",
+    "main.js.map": "/static/js/main.227bf3d4.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.7921de10.js",
     "runtime-main.js.map": "/static/js/runtime-main.7921de10.js.map",
-    "vendor.css": "/static/css/vendor.936bff83.chunk.css",
-    "vendor.js": "/static/js/vendor.6cf091f2.chunk.js",
-    "vendor.js.map": "/static/js/vendor.6cf091f2.chunk.js.map",
+    "vendor.css": "/static/css/vendor.b343a053.chunk.css",
+    "vendor.js": "/static/js/vendor.36866828.chunk.js",
+    "vendor.js.map": "/static/js/vendor.36866828.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.af051349.chunk.css.map": "/static/css/main.af051349.chunk.css.map",
-    "static/css/vendor.936bff83.chunk.css.map": "/static/css/vendor.936bff83.chunk.css.map",
-    "static/js/vendor.6cf091f2.chunk.js.LICENSE.txt": "/static/js/vendor.6cf091f2.chunk.js.LICENSE.txt",
+    "static/css/main.3fbd866b.chunk.css.map": "/static/css/main.3fbd866b.chunk.css.map",
+    "static/css/vendor.b343a053.chunk.css.map": "/static/css/vendor.b343a053.chunk.css.map",
+    "static/js/vendor.36866828.chunk.js.LICENSE.txt": "/static/js/vendor.36866828.chunk.js.LICENSE.txt",
     "static/media/banner.50622858.jpg": "/static/media/banner.50622858.jpg",
-    "static/media/home.less": "/static/media/foot.d7834aba.jpg",
+    "static/media/index.less": "/static/media/sider_bg.23936021.png",
     "static/media/bonus.aff79b62.jpg": "/static/media/bonus.aff79b62.jpg",
+    "static/media/home.less": "/static/media/foot.d7834aba.jpg",
     "static/media/logo.55cbeaad.png": "/static/media/logo.55cbeaad.png",
     "static/media/setup.862b62a6.jpg": "/static/media/setup.862b62a6.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.7921de10.js",
-    "static/css/vendor.936bff83.chunk.css",
-    "static/js/vendor.6cf091f2.chunk.js",
-    "static/css/main.af051349.chunk.css",
-    "static/js/main.8df6bf2c.chunk.js"
+    "static/css/vendor.b343a053.chunk.css",
+    "static/js/vendor.36866828.chunk.js",
+    "static/css/main.3fbd866b.chunk.css",
+    "static/js/main.227bf3d4.chunk.js"
   ]
 }

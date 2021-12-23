@@ -4,6 +4,7 @@ import { Link, useHistory  } from '@friday/router'
 import { dispatchAsync } from '@friday/async'
 import { useApiSelector, useUserInfo } from 'src/hooks'
 import options from 'src/common/city.json'
+import loginLoign from 'src/pages/home/images/login-m.png'
 import { omit } from 'lodash'
 import './index.less'
 
@@ -57,12 +58,16 @@ const Index = () => {
 
     return (
         <div className='m-login'>
-            <div className='m-login-header'>
-                合物创新-洪合杯
-            </div>
+            <div className='m-login-b'>
+                <div className='m-login-l'>
+                </div>
             <div className='m-login-content'>
+                <div className='m-login-bg'>
                 <div className='m-login-main'>
-                    <h3 className='m-title'>注册</h3>
+                    <h3 className='m-title'>
+                        <img src={loginLoign} />
+                    </h3>
+                    <div className='m-login-form'>
                     <Form form={form} 
                         labelCol={{ span: 5 }}
                         onFinish={onFinish}
@@ -130,6 +135,9 @@ const Index = () => {
                         </div>
                     </Form>
                 </div>
+                </div>
+                </div>
+            </div>
             </div>
         </div>
     )

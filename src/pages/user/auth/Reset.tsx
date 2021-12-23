@@ -3,6 +3,7 @@ import { Form, Input, Button, Row, Col, message} from 'antd'
 import { Link, useHistory  } from '@friday/router'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync } from '@friday/async'
+import loginLoign from 'src/pages/home/images/login-m.png'
 import './index.less'
 
 const FormItem = Form.Item
@@ -52,12 +53,16 @@ const Index = () => {
 
     return (
         <div className='m-login'>
-            <div className='m-login-header'>
-                洪合杯
+            <div className='m-login-b'>
+            <div className='m-login-l'>
             </div>
             <div className='m-login-content'>
+                <div className='m-login-bg'>
                 <div className='m-login-main'>
-                    <h3 className='m-title'>重设密码</h3>
+                    <h3 className='m-title'>
+                        <img src={loginLoign} />
+                    </h3>
+                    <div className='m-login-form'>
                     <Form 
                         form={form}
                         labelCol={{ span: 5 }}
@@ -120,6 +125,9 @@ const Index = () => {
                         </Form.Item>
                     </Form>
                 </div>
+                </div>
+            </div>
+            </div>
             </div>
         </div>
     )

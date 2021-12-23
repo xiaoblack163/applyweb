@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react'
-import { Form, Input, Button, Row, Col, message} from 'antd'
+import { Form, Input, Button, Row, Space, message} from 'antd'
 import { Link } from '@friday/router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { useHistory } from '@friday/router'
 import { useApiSelector, useUserInfo } from 'src/hooks'
 import { dispatchAsync } from '@friday/async'
 import TokenService from 'src/services/tokenService'
+import loginLoign from 'src/pages/home/images/login-m.png'
 import './index.less'
 
 const FormItem = Form.Item
@@ -43,62 +44,69 @@ const Index = () => {
 
     return (
         <div className='m-login'>
-            <div className='m-login-header'>
-                <a href='/'>洪合杯</a>
-            </div>
-            <div className='m-login-content'>
-                <div className='m-login-main'>
-                    <h3 className='m-title'>登录</h3>
-                    <Form form={form}
-                        onFinish={onFinish}
-                        layout="vertical"
-                    >
-                        <FormItem 
-                            label='手机号' 
-                            name='username'
-                            rules={[{
-                                required: true, 
-                                message: '请输入正确的手机号', 
-                                pattern: /^1[3456789]\d{9}$/
-                            }]}
+            <div className='m-login-b'>
+                <div className='m-login-l'>
+                </div>
+                <div className='m-login-content'>
+                    <div className='m-login-bg'>
+                    <div className='m-login-main'>
+                        <h3 className='m-title'>
+                            <img src={loginLoign} />
+                        </h3>
+                        <div className='m-login-form'>
+                        <Form form={form}
+                            onFinish={onFinish}
+                            layout="vertical"
+                            
                         >
-                            <Input  placeholder="请输入手机号" size='middle' />
-                        </FormItem>
-                        <FormItem 
-                            label='密码' 
-                            name='password' 
-                            rules={[{required: true, message: '请输入密码'}]}
-                        >
-                            <Input 
-                                type="password" 
-                                placeholder="请输入密码" 
-                                size='middle' 
-                            />
-                        </FormItem>
-                        <Form.Item>
-                            <Button
-                                className="login-form-button"
-                                type="primary"
-                                htmlType="submit"
-                                size='middle'
-                                block
+                            <FormItem 
+                                label='账号登录' 
+                                name='username'
+                                rules={[{
+                                    required: true, 
+                                    message: '请输入正确的手机号', 
+                                    pattern: /^1[3456789]\d{9}$/
+                                }]}
                             >
-                                登录
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                    <div className='tc  mg-b-20' style={{fontSize: '12px'}}>
-                        <Link to='/user/reset' className='grey'>
-                            忘记密码
-                        </Link>
+                                <Input  placeholder="请输入手机号" size='middle' />
+                            </FormItem>
+                            <FormItem 
+                                label='密码' 
+                                name='password' 
+                                rules={[{required: true, message: '请输入密码'}]}
+                            >
+                                <Input 
+                                    type="password" 
+                                    placeholder="请输入密码" 
+                                    size='middle' 
+                                />
+                            </FormItem>
+                            <div className='clearfix'>
+                                <Space className='tc mg-b-20 fr' style={{fontSize: '12px'}}>
+                                    <Link to='/user/reset' className='grey'>
+                                        忘记密码
+                                    </Link>
+                                    <Link to='/user/register' className='grey' >
+                                        注册
+                                    </Link>
+                                </Space>
+                            </div>
+                            <Form.Item>
+                                <Button
+                                    className="login-form-button"
+                                    type="primary"
+                                    htmlType="submit"
+                                    size='middle'
+                                    block
+                                >
+                                    登录
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                        <div>
+                        </div>
+                        </div>
                     </div>
-                    <div className='tc grey mg-b-10' style={{fontSize: '12px'}}>还没有账号?</div>
-                    <div>
-                        <Button block >
-                            <Link to='/user/register' >
-                                注册
-                            </Link>
-                        </Button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Space, Popover } from 'antd'
+import { Divider, Space, Popover, Button } from 'antd'
 import { Link } from '@friday/router'
 import { get } from 'lodash'
 import { useConfiguration } from '@friday/core'
@@ -47,11 +47,11 @@ const useColumns = () => {
             render: (text, record) => {
                 return (
                     <Space split={<Divider />}>  
-                        <span className='operation'>
+                        <Button type='primary' size={'small'}>
                             <Link to={`/admin/review/${record.id}/score`}>
                                 去打分
                             </Link >
-                        </span>
+                        </Button>
                     </Space>
                 )
             }
