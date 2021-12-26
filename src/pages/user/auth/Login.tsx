@@ -105,6 +105,7 @@ const Index = () => {
                         </Form>
                         <div>
                         </div>
+                        <div style={{textAlign: 'center', fontSize: '10px', color: '#999'}}>First 2022 "HONGHEBEI" Sweater design competition</div>
                         </div>
                     </div>
                     </div>
