@@ -25,6 +25,12 @@ const Index = () => {
         if (isShowCode) {
             return 
         }
+        const { phone } = fileds
+        const { error, data } = await dispatchAsync(apis.user.sendCode({
+            phone,
+            type: 0
+        }))
+        if (error) return 
         setIsShowCode(true)
         const active = setInterval(() => {
             setTime((preSecond) => {
@@ -37,12 +43,6 @@ const Index = () => {
               return preSecond - 1
             })
         }, 1000)
-        const { phone } = fileds
-        const { error, data } = await dispatchAsync(apis.user.sendCode({
-            phone,
-            type: 0
-        }))
-        if (error) return 
         message.success('发送成功')
     }
 
