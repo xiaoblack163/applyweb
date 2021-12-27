@@ -86,7 +86,7 @@ const Home = () => {
 						参赛作品必须是作者本人或团队原创设计作品，不得侵犯他人知识产权。创作过程及作品本身不得摹仿、抄袭、拷贝国内外的作品或创意，不得侵犯他人的知识产权。所有因参赛作品引发的版权或知识产权纠纷均与大赛组委会无关。参赛者按要求签署作品《原创承诺书》，后一经发现有抄袭作品、发生知识产权或版权纠纷等情况，将取消作者参赛资格，并由作者承担相应后果。
 					</p>
 					<Row gutter={16} className='mg-tb-10'>
-						<Col span={8}>
+						<Col xs={24} md={8} className='mg-b-10'>
 							<div className='m-work-list'>
 								<h4>系列服饰类</h4>
 								<div>
@@ -94,7 +94,7 @@ const Home = () => {
 								</div>
 							</div>
 						</Col>
-						<Col span={8}>
+						<Col xs={24} md={8} className='mg-b-10'>
 							<div className='m-work-list'>
 								<h4>经典套装类</h4>
 								<div>
@@ -102,7 +102,7 @@ const Home = () => {
 								</div>
 							</div>
 						</Col>
-						<Col span={8}>
+						<Col xs={24} md={8} >
 							<div className='m-work-list'>
 								<h4>毛衫文化品牌类</h4>
 								<div>
@@ -144,44 +144,44 @@ const Home = () => {
 						<dt><span>◆</span>主办单位</dt>
 						<dd>
 							<Row>
-								<Col span={6}>工业和信息化部工业文化发展中心</Col>
-								<Col span={6}>中国服装设计师协会</Col>
-								<Col span={6}>嘉兴市秀洲区人民政府</Col>
+								<Col xs={24} md={6}>工业和信息化部工业文化发展中心</Col>
+								<Col xs={24} md={6}>中国服装设计师协会</Col>
+								<Col xs={24} md={6}>嘉兴市秀洲区人民政府</Col>
 							</Row>
 						</dd>
 						<dt><span>◆</span>承办单位</dt>
 						<dd>
 							<Row>
-								<Col span={6}>嘉兴市秀洲区洪合镇人民政府</Col>
-								<Col span={6}>嘉兴市秀洲洪合毛衫商会</Col>
-								<Col span={6}>嘉兴毛衫城投资开发有限公司</Col>
-								<Col span={6}>北京三达经済技术合作开发中心</Col>
-								<Col span={6}>京合物品牌设计有限公司</Col>
-								<Col span={6}>东方宾利文化传媒有限公司</Col>
+								<Col xs={24} md={6}>嘉兴市秀洲区洪合镇人民政府</Col>
+								<Col xs={24} md={6}>嘉兴市秀洲洪合毛衫商会</Col>
+								<Col xs={24} md={6}>嘉兴毛衫城投资开发有限公司</Col>
+								<Col xs={24} md={6}>北京三达经済技术合作开发中心</Col>
+								<Col xs={24} md={6}>京合物品牌设计有限公司</Col>
+								<Col xs={24} md={6}>东方宾利文化传媒有限公司</Col>
 							</Row>
 						</dd>
 						<dt><span>◆</span>协办单位</dt>
 						<dd>
 							<Row>
-								<Col span={6}>北京服装学院服装艺术与工程学院</Col>
-								<Col span={6}>北京工业大学艺术设计学院</Col>
-								<Col span={6}>北京科技大学机械工程学院</Col>
-								<Col span={6}>北京理工大学珠海学院</Col>
-								<Col span={6}>北京城市学院艺术设计学部</Col>
-								<Col span={6}>中关村工业设计产业协会</Col>
-								<Col span={6}>华大学服装与艺术设计学院</Col>
-								<Col span={6}>北京设计学会</Col>
+								<Col xs={24} md={6}>北京服装学院服装艺术与工程学院</Col>
+								<Col xs={24} md={6}>北京工业大学艺术设计学院</Col>
+								<Col xs={24} md={6}>北京科技大学机械工程学院</Col>
+								<Col xs={24} md={6}>北京理工大学珠海学院</Col>
+								<Col xs={24} md={6}>北京城市学院艺术设计学部</Col>
+								<Col xs={24} md={6}>中关村工业设计产业协会</Col>
+								<Col xs={24} md={6}>华大学服装与艺术设计学院</Col>
+								<Col xs={24} md={6}>北京设计学会</Col>
 							</Row>
 						</dd>
 						<dt><span>◆</span>支持单位</dt>
 						<dd>
 							<Row>
-								<Col span={6}>北京联合大学艺术设计学院</Col>
-								<Col span={6}>上海工艺美术职业学院</Col>
-								<Col span={6}>上海工程技术大学</Col>
-								<Col span={6}>上海视觉艺术学院</Col>
-								<Col span={6}>上海杉达学院</Col>
-								<Col span={6}>中国农林高校设计艺术联盟</Col>
+								<Col xs={24} md={6}>北京联合大学艺术设计学院</Col>
+								<Col xs={24} md={6}>上海工艺美术职业学院</Col>
+								<Col xs={24} md={6}>上海工程技术大学</Col>
+								<Col xs={24} md={6}>上海视觉艺术学院</Col>
+								<Col xs={24} md={6}>上海杉达学院</Col>
+								<Col xs={24} md={6}>中国农林高校设计艺术联盟</Col>
 							</Row>
 						</dd>
 					</dl>
@@ -190,10 +190,18 @@ const Home = () => {
 			</div>
 			<div className='m-home-footer'>
 				<div className='tc'>
-					组委会电话：0573-83688792（嘉兴）/01068209904（北京） 报名参赛电话：13681490652（李老师）
+					<div className='m-pc'>组委会电话：0573-83688792（嘉兴）/01068209904（北京）报名参赛电话：13681490652（李老师）</div>
+					<Row className='m-phone'>
+						<Col xs={24} md={12}>组委会电话：0573-83688792（嘉兴）/01068209904（北京）</Col>
+						<Col xs={24} md={12}>报名参赛电话：13681490652（李老师）</Col>
+					</Row>
 				</div>
 				<div className='tc'>
-					秘书处电话：01068209904/18600562869（冯老师）   邮箱：honghemaoshandasai@163.com
+					<div className='m-pc'>秘书处电话：01068209904/18600562869（冯老师）邮箱：honghemaoshandasai@163.com</div>
+					<Row className='m-phone'>
+						<Col xs={24} md={12}>秘书处电话：01068209904/18600562869（冯老师）</Col>
+						<Col xs={24} md={12}>邮箱：honghemaoshandasai@163.com</Col>
+					</Row>
 				</div>
 			</div>
 		</div>
