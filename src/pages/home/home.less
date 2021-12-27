@@ -9,8 +9,8 @@
 			position: absolute;
 			width: 10vw;
 			height: 10vw;
-			right: 20px;
-			bottom: 20px
+			right: 4vw;
+			bottom: 3vw
 		}
 	}
 	.m-home-nav{
@@ -101,7 +101,8 @@
 				color: #333;
 				padding: 10px;
 				background: #eeedee;
-				height: 280px;
+				// padding-bottom:30px;
+				min-height: 180px;
 				text-align: justify;
 				&::after{
 					position: absolute;
@@ -143,6 +144,9 @@
 .m-phone{
 	display: none;
 }
+.m-banner-p{
+	display: none;
+}
 
 @media screen and (min-width: 120px) and (max-width: 1024px) {
 	.m-home-footer{
@@ -177,5 +181,17 @@
 	}
 	.m-home-wrapper .m-home-main .m-work-list h4{
 		font-size: 16px;
+	}
+	.m-banner-p{
+		display: block;
+	}
+	.m-banner-m{
+		display: none;
+	}
+	.m-home-wrapper .m-home-banner a{
+		width: 15vw;
+		height: 15vw;
+		right: 2vw;
+		bottom: 7vw
 	}
 }

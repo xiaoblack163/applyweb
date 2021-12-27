@@ -2,6 +2,7 @@
 import React from 'react'
 import {Affix, Divider, Row, Col} from  'antd'
 import banner from './images/banner.jpg'
+import bannerpc from './images/bannerpc.jpg'
 import AnchorDetect from 'react-anchor-scroll-detect'
 import pic_two from './images/pic_02.jpeg'
 import logo from './images/logo.png'
@@ -14,8 +15,9 @@ const Home = () => {
 	return (
 		<div className='m-home-wrapper'>
 			<div className='m-home-banner'>
-				<img src={banner} />
-				<a href='/user/login'></a>
+				<img src={banner} className='m-banner-p'/>
+				<img src={bannerpc} className='m-banner-m' />
+				<a href='/user/login' ></a>
 			</div>
 			<Affix>
 				<div className='m-home-nav'>
