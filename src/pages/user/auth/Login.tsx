@@ -7,6 +7,8 @@ import { useApiSelector, useUserInfo } from 'src/hooks'
 import { dispatchAsync } from '@friday/async'
 import TokenService from 'src/services/tokenService'
 import loginLoign from 'src/pages/home/images/login-m.png'
+import LoginLottie from './LoginLottie'
+import LoadingCom from 'src/pages/layouts/LodingCom'
 import './index.less'
 
 const FormItem = Form.Item
@@ -14,6 +16,10 @@ const FormItem = Form.Item
 const Index = () => {
 
     const [form] = Form.useForm()
+
+    const [lottie, showLottie] = React.useState(true)
+
+    const [loading, setLoading] = React.useState(true)
 
     const apis = useApiSelector()
 
@@ -43,7 +49,9 @@ const Index = () => {
     } 
 
     return (
-        <div className='m-login'>
+        <>
+       
+        <div className={lottie? 'm-login hide' : 'm-login show'}>
             <div className='m-login-b'>
                 <div className='m-login-l'>
                 </div>
@@ -112,6 +120,13 @@ const Index = () => {
                 </div>
             </div>
         </div>
+        <div className={lottie ? 'lottie show' : "lottie hide"}>
+            {loading && <LoadingCom /> }
+            <div style={{background: '#fff', height: '100vh'}}>
+                <LoginLottie showLottie={showLottie} setLoading={setLoading} />
+            </div>
+        </div>
+        </>
     )
 }
 

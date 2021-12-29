@@ -62,6 +62,26 @@
     }
 }
 
+.m-login, .lottie{
+    transition: all 0.3s ease;
+}
+
+.show {
+    opacity: 1;
+    width: 100%;
+    height: 100vh;
+}
+
+.lottie.hide {
+    opacity: 0;
+    display: none;
+}
+
+.m-login.hide {
+    opacity: 0;
+    transform: translateY(200vh);
+    position: absolute;
+}
 
 /* 手机等小屏幕手持设备 */
 @media screen and (min-width: 120px) and (max-width: 1024px) {
