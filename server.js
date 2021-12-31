@@ -9,6 +9,7 @@ const app = express();
 
 app.use(compression())
 app.use('/static', express.static(__dirname + '/build/static'));
+app.use('/images', express.static(__dirname + '/build/images'));
 app.use('/favicon', express.static(__dirname + '/favicon'))
 // 网站升级提示目录
 app.use(bodyParser.json());

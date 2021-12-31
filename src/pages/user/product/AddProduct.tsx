@@ -7,7 +7,7 @@ import UploadImg from './UploadImg'
 import UploadVideo from './UploadVideo'
 import { isEmpty, get } from 'lodash'
 import { useConfiguration } from '@friday/core'
-
+import cookie from 'js-cookie'
 
 const FormItem = Form.Item
 
@@ -37,7 +37,20 @@ const transformUpload = (path=[], prefix) => {
                 filePath: item
             },
             status: "done",
-            thumbUrl: prefix + item
+            thumbUrl: prefix + item,
+            url: prefix + item
+        }
+    })
+}
+
+const transformCache = (path, prefix) => {
+    if (isEmpty(path)) return ''
+    return path.map(item => {
+        const url = get(item, 'response.filePath')
+        return {
+            ...item,
+            thumbUrl: prefix + url,
+            url: prefix + url
         }
     })
 }
@@ -55,6 +68,19 @@ const Index = () => {
     const { publicUrl } = useConfiguration()
 
     React.useEffect(() => {
+        if(id == 0) {
+            const values = JSON.parse(cookie.get('product') || '{}')
+            if(!isEmpty(values)) {
+                form.setFieldsValue({
+                    ...values,
+                    productPics: transformCache(values.productPics, publicUrl.OPEN_IMG_URL),
+                    productVideos:transformCache(values.productVideos, publicUrl.OPEN_IMG_URL)
+                })
+            }
+        }
+    }, [id])
+
+    React.useEffect(() => {
         if (!isEmpty(dataJson)) {
             const {productPics, productVideos} = dataJson
             console.log(typeof productPics)
@@ -65,6 +91,7 @@ const Index = () => {
             }
             form.setFieldsValue(payload)
         }
+        
     }, [dataJson])
 
     const history = useHistory()
@@ -83,7 +110,12 @@ const Index = () => {
         
         if (respone.error) return 
         message.success(id ? '编辑成功':'添加成功')
+        cookie.set('product', '{}')
         history.goBack()
+    }
+
+    const onValuesChange = (changedValues, allValues) => {
+        cookie.set('product', JSON.stringify(allValues))
     }
 
     return (
@@ -106,6 +138,7 @@ const Index = () => {
                     md: 14
                 }}
                 onFinish={onFinish}
+                onValuesChange={onValuesChange}
             >
                 <FormItem
                     label={'参赛类别'}
@@ -189,7 +222,7 @@ const Index = () => {
                 <FormItem
                     label={'作品视频'}
                     rules={[{required: false, validator: (_, value) => {
-                        if (isEmpty(value)) return Promise.reject('请上传作品视频');
+                        if (isEmpty(value)) return Promise.resolve();
                         let isCheckSize = false
                         value.some(item => {
                             const size = get(item, 'originFileObj.size')
@@ -214,7 +247,6 @@ const Index = () => {
                 <FormItem
                     label={'设计主题及作品说明(中文)'}
                     rules={[{required: false, message: '请输入设计主题及作品说明(中文)'}]}
-                    name='productDesc'
                 >
                    围绕作品的创作灵感，分别阐述作品的原创性、文化特征、数字化设计、工艺特点、市场竞争力（每条不超过150字）
                 </FormItem>

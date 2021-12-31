@@ -9,6 +9,7 @@ import { useApiSelector, useUserInfo } from 'src/hooks'
 import { useConfiguration } from '@friday/core'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { omit, isEmpty, get, pick } from 'lodash'
+import cookie from 'js-cookie'
 import moment from 'moment'
 import './index.less'
 
@@ -56,7 +57,7 @@ const Index = () => {
 
     const { publicUrl } = useConfiguration()
 
-    const { dataJson, revalidate } = useRequest(apis.user.fetchUserInfo({}))
+    const { dataJson } = useRequest(apis.user.fetchUserInfo({}))
 
     const { dispatchUserInfo } = useUserInfo()
 
@@ -74,6 +75,17 @@ const Index = () => {
             }
             console.log(payload, 'payload')
             form.setFieldsValue(payload)
+        }
+        // 自动保存
+        const {complete} = dataJson 
+        if (!complete) {
+            const values = JSON.parse(cookie.get('info') || '{}')
+            if(!isEmpty(values)) {
+                form.setFieldsValue({
+                    ...values,
+                    birthday: moment(values.birthday)
+                })
+            }
         }
     }, [dataJson]) 
     
@@ -94,10 +106,14 @@ const Index = () => {
         })) as any
         if (respone.error) return 
         message.success('更新成功')
+        cookie.set('info', '{}')
         dispatchUserInfo(respone.dataJson)
         history.push('/user/info')
-        
     } 
+
+    const onValuesChange = (changedValues, allValues) => {
+        cookie.set('info', JSON.stringify(allValues))
+    }
 
     return (
         <div className='m-info'>
@@ -114,6 +130,7 @@ const Index = () => {
                 wrapperCol={{span: 14}}
                 onFinish={onFinish}
                 className='pd-t-20'
+                onValuesChange={onValuesChange}
             >
                 
                 <FormItem
@@ -266,7 +283,6 @@ const Index = () => {
                     rules={[{
                         required: false, 
                         message: '请输入微信号', 
-                        pattern: /^[a-zA-Z][a-zA-Z\d_-]{5,19}$/
                     }]}
                 >
                     <Input />
