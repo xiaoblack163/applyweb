@@ -1,9 +1,18 @@
+/*
+ * @Author: your name
+ * @Date: 2021-11-18 14:36:07
+ * @LastEditTime: 2021-12-31 14:29:42
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /applyweb/src/pages/user/product/useColumns.tsx
+ */
 import React from "react";
 import { Divider, Space, Popover, Modal, message, Button } from 'antd'
 import { Link } from '@friday/router'
 import { get } from 'lodash'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { apis } from "src/apiStore";
+import ImgPreview from './ImgPreview'
 
 
 const useColumns = ( publicUrl, revalidate) => {
@@ -32,11 +41,10 @@ const useColumns = ( publicUrl, revalidate) => {
                 const imgUrl = get(eval(txt), '[0]')
                 const img =  publicUrl.OPEN_IMG_URL + imgUrl
                 return (
-                    <div className='m-img-thumbs'>
-                        <Popover content={<img src={img} />}>
-                            <img src={img} />
-                        </Popover>
-                    </div>
+                    <ImgPreview 
+                        url={img}
+                        list={eval(txt)}
+                    />
                 )
             }
         }, {

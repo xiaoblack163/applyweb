@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-11-22 10:39:54
+ * @LastEditTime: 2021-12-31 14:57:04
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /applyweb/src/pages/user/product/UploadImg.tsx
+ */
 import React, { useState } from 'react'
 import { Upload } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
@@ -46,11 +54,12 @@ const Qrcode = (props) => {
                     className="m-avatar-uploader"
                     {...uploadprops}
                 >
-                    
-                    <div>
-                        <PlusOutlined />
-                        <div style={{ marginTop: 8 }}>{title}</div>
-                    </div>
+                    {fileList.length > 3 ? null :
+                        <div>
+                            <PlusOutlined />
+                            <div style={{ marginTop: 8 }}>{title}</div>
+                        </div>
+                    }
                 </Upload>
             </div>
             <div style={{ fontSize: '10px', color: '#999', marginTop: 10 }} >{tips}</div>

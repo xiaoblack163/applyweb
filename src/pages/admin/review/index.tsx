@@ -95,23 +95,20 @@ const Index = () => {
                 <Descriptions.Item label="设计主题及作品说明(中文)" span={3}>
                     {/* {get(dataJson, 'productDesc') || '--'} */}
                     <div>
-                        <span style={{color: '#666'}}>原创性:</span> {get(dataJson, 'explainA') || '--'}
+                        <span style={{color: '#666'}}>原创性与创新性:</span> {get(dataJson, 'explainA') || '--'}
                     </div>
                     <div>
-                        <span style={{color: '#666'}}>文化特性:</span> {get(dataJson, 'explainB') || '--'}
+                        <span style={{color: '#666'}}>美观性:</span> {get(dataJson, 'explainB') || '--'}
                     </div>
                     <div>
-                        <span style={{color: '#666'}}>数字化设计:</span> {get(dataJson, 'explainC') || '--'}
+                        <span style={{color: '#666'}}>系列性:</span> {get(dataJson, 'explainC') || '--'}
                     </div>
                     <div>
-                        <span style={{color: '#666'}}>工艺特点:</span> {get(dataJson, 'explainD') || '--'}
+                        <span style={{color: '#666'}}>工艺性:</span> {get(dataJson, 'explainD') || '--'}
                     </div>
                     <div>
-                        <span style={{color: '#666'}}>市场竞争力:</span> {get(dataJson, 'explainE') || '--'}
+                        <span style={{color: '#666'}}>商业价值:</span> {get(dataJson, 'explainE') || '--'}
                     </div>
-                </Descriptions.Item>
-                <Descriptions.Item label="设计主题及作品说明(英文)" span={3}>
-                    {get(dataJson, 'productDescEn') || '--'}
                 </Descriptions.Item>
                 
             </Descriptions>

@@ -177,7 +177,7 @@ const Index = () => {
                 <Divider />
                 <FormItem
                     label={'作品名称(英文)'}
-                    rules={[{required: true, message: '请输入作品名称(英文)'}]}
+                    rules={[{required: false, message: '请输入作品名称(英文)'}]}
                     name='productNameEn'
                 >
                     <Input placeholder='请输入作品名称(英文)' />
@@ -188,7 +188,7 @@ const Index = () => {
                     rules={[{required: false, message: '请输入指导教师'}]}
                     name='recommendName'
                 >
-                    <Input placeholder='请输入指导教师' />
+                    <Input placeholder='请输入指导教师姓名，最多2人' />
                 </FormItem>
                 <Divider />
 
@@ -216,7 +216,7 @@ const Index = () => {
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    <UploadImg title='上传图片' tips='上传格式jpg、png、jpeg，大小不超过2M，A3尺寸，分辨率300dpi，一套作品2-3张图片' />
+                    <UploadImg title='上传图片' tips='上传格式jpg、png、jpeg，单张图片大小不超过2M，A3尺寸，分辨率300dpi，最多可上传4张图片' />
                 </FormItem>
                 <Divider />
                 <FormItem
@@ -241,56 +241,49 @@ const Index = () => {
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    <UploadVideo title='上传视频' tips='请上传小于10m的视频' />
+                    <UploadVideo title='上传视频' tips='上传作品说明视频，格式要求MP4、AVI, 文件小于10MB。' />
                 </FormItem>
                 <Divider />
                 <FormItem
                     label={'设计主题及作品说明(中文)'}
                     rules={[{required: false, message: '请输入设计主题及作品说明(中文)'}]}
                 >
-                   围绕作品的创作灵感，分别阐述作品的原创性、文化特征、数字化设计、工艺特点、市场竞争力（每条不超过150字）
+                   分别阐述作品的原创性与创新性、美观性、系列性、工艺性、商业价值。*此表述为重要的评审指标
                 </FormItem>
                 <FormItem
-                    label={'原创性'}
+                    label={'原创性与创新性'}
                     rules={[{required: true, message: '请输入原创性', max: 150}]}
                     name='explainA'
                 >
-                    <Input.TextArea placeholder='请输入原创性' rows={3} />
+                    <Input.TextArea placeholder='描述作品的创意主题、创意思路、创新特点、作品优势等（文字不超过150字）' rows={3} />
                 </FormItem>
                 <FormItem
-                    label={'文化特性'}
-                    rules={[{required: true, message: '请输入文化特性', max: 150}]}
+                    label={'美观性'}
+                    rules={[{required: true, message: '请输入美观性', max: 150}]}
                     name='explainB'
                 >
-                    <Input.TextArea placeholder='请输入文化特性' rows={3} />
+                    <Input.TextArea placeholder='描述作品在视觉创意上的思路、特点等（文字不超过150字）' rows={3} />
                 </FormItem>
                 <FormItem
-                    label={'数字化设计'}
-                    rules={[{required: true, message: '请输入数字化设计', max: 150}]}
+                    label={'系列性'}
+                    rules={[{required: true, message: '请输入系列性', max: 150}]}
                     name='explainC'
                 >
-                    <Input.TextArea placeholder='请输入数字化设计' rows={3}/>
+                    <Input.TextArea placeholder='描述作品的系列主题、系列创意思路、作品如何体现系列化等（文字不超过150字）' rows={3}/>
                 </FormItem>
                 <FormItem
-                    label={'工艺特点'}
-                    rules={[{required: true, message: '请输入工艺特点', max: 150}]}
+                    label={'工艺性'}
+                    rules={[{required: true, message: '请输入工艺性', max: 150}]}
                     name='explainD'
                 >
-                    <Input.TextArea placeholder='请输入工艺特点' rows={3}/>
+                    <Input.TextArea placeholder='描述作品的工艺特点、在材料工艺方面的创新性、材料工艺的可行性等（文字不超过150字）' rows={3}/>
                 </FormItem>
                 <FormItem
-                    label={'市场竞争力'}
-                    rules={[{required: true, message: '请输入市场竞争力', max: 150}]}
+                    label={'商业价值'}
+                    rules={[{required: true, message: '请输入商业价值', max: 150}]}
                     name='explainE'
                 >
-                    <Input.TextArea placeholder='请输入市场竞争力' rows={3} />
-                </FormItem>
-                <FormItem
-                    label={'设计主题及作品说明(英文)'}
-                    rules={[{required: false, message: '请输入设计主题及作品说明(英文)'}]}
-                    name='productDescEn'
-                >
-                    <Input.TextArea placeholder='请输入设计主题及作品说明(英文)' rows={5} />
+                    <Input.TextArea placeholder=' 描述作品的商业可行性与商业价值（文字不超过150字）' rows={3} />
                 </FormItem>
                 <div className='tc' style={{width: '300px', margin: '0 auto'}}>
                     <Button

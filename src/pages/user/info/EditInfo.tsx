@@ -11,6 +11,7 @@ import { dispatchAsync, useRequest } from '@friday/async'
 import { omit, isEmpty, get, pick } from 'lodash'
 import cookie from 'js-cookie'
 import moment from 'moment'
+import DateSelect from './DateSelect'
 import './index.less'
 
 const FormItem = Form.Item
@@ -46,6 +47,20 @@ const transformUpload = (path, prefix) => {
     }]
 }
 
+const getBirthday = (str) => {
+    const {year, month, day} = str
+    return `${year}-${month}-${day}`
+}
+
+const transformBirthday = (str) => {
+    const [year, month, day] = str.split('-')
+    return {
+        year: year ? Number(year) : 2022,
+        month: month ? Number(month) : 1,
+        day:day ? Number(day) : 1
+    }
+}
+
 
 const Index = () => {
 
@@ -70,7 +85,7 @@ const Index = () => {
                 area,      
                 idcardBack: transformUpload(idcardBack, publicUrl.OPEN_IMG_URL),
                 idcardFront: transformUpload(idcardFront, publicUrl.OPEN_IMG_URL),
-                birthday: moment(birthday),
+                birthday: transformBirthday(birthday),
                 photo: transformUpload(photo, publicUrl.OPEN_IMG_URL),
             }
             console.log(payload, 'payload')
@@ -83,7 +98,6 @@ const Index = () => {
             if(!isEmpty(values)) {
                 form.setFieldsValue({
                     ...values,
-                    birthday: moment(values.birthday)
                 })
             }
         }
@@ -96,7 +110,7 @@ const Index = () => {
         const [province, city, county] = area
         const respone = await dispatchAsync(apis.user.completeInfo({
             ...omit(values, ['birthday', 'area', 'idcardBack', 'idcardFront', 'photo']),
-            birthday: moment(birthday).format('YYYY-MM-DD'),
+            birthday: getBirthday(birthday),
             province,
             city,
             county,
@@ -158,7 +172,7 @@ const Index = () => {
                 </FormItem>
                 <Divider />
                 <FormItem
-                    label={<FormLabel name='证照' en='Photo' required />}
+                    label={<FormLabel name='照片' en='Photo' required />}
                     rules={[{
                         required: true, 
                         validator: (_, value) => {
@@ -245,10 +259,10 @@ const Index = () => {
                     <Input />
                 </FormItem>
                 <FormItem
-                    label={<FormLabel name='专业' en='specialty' required />}
+                    label={<FormLabel name='专业' en='specialty'  />}
                     name='professional'
                     rules={[{
-                        required: true, 
+                        required: false, 
                         message: '请输入专业', 
                     }]}
                 >
@@ -303,16 +317,24 @@ const Index = () => {
                     rules={[{
                         required: true, 
                         message: '请选择出生年月日', 
+                        validator: (_, value) => {
+                            if (isEmpty(value)) return Promise.reject('请选择出生年月日')
+                            if (!value.year) return Promise.reject('请选择出生年月日')
+                            if (!value.month)return Promise.reject('请选择出生年月日')
+                            if (!value.day)return Promise.reject('请选择出生年月日')
+                            return Promise.resolve()
+                        }
                     }]}
                     name='birthday'
                 >
-                    <DatePicker style={{width: '100%'}} />
+                    {/* <DatePicker style={{width: '100%'}} /> */}
+                    <DateSelect />
                 </FormItem>
                 <FormItem
-                    label={<FormLabel name='身份证号码' en='ID Card No.' required />}
+                    label={<FormLabel name='身份证号' en='ID Card No.' required />}
                     rules={[{
                         required: true, 
-                        message: '请输入身份证号码', 
+                        message: '请输入身份证号', 
                         
                     }]}
                     name='idcard'
@@ -320,7 +342,7 @@ const Index = () => {
                     <Input />
                 </FormItem>
                 <FormItem
-                    label={<FormLabel name='身份证照' en='ID Card Copy' required />}
+                    label={<FormLabel name='上传身份证' en='ID Card Copy'  />}
                     className='m-info-card'
                     style={{marginBottom: 0}}
                 >
@@ -333,9 +355,9 @@ const Index = () => {
                             getValueFromEvent={normFile}
                             style={{marginBottom: 0}}
                             rules={[{
-                                required: true, 
+                                required: false, 
                                 validator: (_, value) => {
-                                    if (isEmpty(value)) return Promise.reject('请请上传身份证正面照');
+                                    if (isEmpty(value)) return Promise.resolve();
                                     const size = get(value, '[0].originFileObj.size')
                                     const sizeM = size/1024/1024
                                     if (sizeM > 2) {
@@ -356,9 +378,9 @@ const Index = () => {
                         getValueFromEvent={normFile}
                         style={{marginBottom: 0}}
                         rules={[{
-                            required: true, 
+                            required: false, 
                             validator: (_, value) => {
-                                if (isEmpty(value)) return Promise.reject('请上传身份证反面照');
+                                if (isEmpty(value)) return Promise.resolve();
                                 const size = get(value, '[0].originFileObj.size')
                                 const sizeM = size/1024/1024
                                 if (sizeM > 2) {

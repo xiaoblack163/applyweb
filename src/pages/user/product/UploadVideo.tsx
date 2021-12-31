@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-11-24 00:32:57
+ * @LastEditTime: 2021-12-31 14:56:26
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /applyweb/src/pages/user/product/UploadVideo.tsx
+ */
 import React, { useState } from 'react'
 import { Upload, Button } from 'antd'
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons'
@@ -29,7 +37,7 @@ const Qrcode = (props) => {
     const uploadprops = {
         name: 'picFile',
         action: publicUrl.OPEN_API_URL + '/file/upload',
-        accept: 'video/mp4',
+        accept: 'video/mp4, video/AVI',
         headers: {
             token: tokenInstance.get() as string
         },
