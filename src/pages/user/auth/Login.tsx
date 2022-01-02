@@ -10,6 +10,7 @@ import loginLoign from 'src/pages/home/images/login-m.png'
 import LoginLottie from './LoginLottie'
 import LoadingCom from 'src/pages/layouts/LodingCom'
 import './index.less'
+import cookie from 'js-cookie'
 
 const FormItem = Form.Item
 
@@ -29,6 +30,11 @@ const Index = () => {
 
     useEffect(() => {
 		TokenService.clear()
+        const isLoad = cookie.get('isLoaded')
+        if (isLoad == 'true') {
+            showLottie(false)
+            setLoading(false)
+        }
 	}, [])
 
 
