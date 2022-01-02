@@ -52,7 +52,7 @@ const getBirthday = (str) => {
     return `${year}-${month}-${day}`
 }
 
-const transformBirthday = (str) => {
+const transformBirthday = (str='') => {
     const [year, month, day] = str.split('-')
     return {
         year: year ? Number(year) : 2022,
