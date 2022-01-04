@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-11-17 17:15:25
+ * @LastEditTime: 2022-01-04 13:48:58
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /applyweb/src/pages/user/Password.tsx
+ */
 import React from 'react'
 import { Form, Input, Button, message, PageHeader, Card } from 'antd'
 import { useApiSelector } from 'src/hooks'
@@ -29,13 +37,13 @@ const Index = () => {
                 wrapperCol={{xs: 12, md: 12}}
                 onFinish={onFinish}
             >
-                <FormItem name='phone' label='手机号'>
+                <FormItem name='phone' label='手机号' rules={[{required: true, message: '请输入您的手机号！'}]} >
                     <Input  placeholder="请输入您的手机号！" size='middle' />
                 </FormItem>
-                <FormItem name='oldPwd' label='旧密码'>
+                <FormItem name='oldPwd' label='旧密码' rules={[{required: true, message: '请输入您的旧密码！'}]}>
                     <Input  placeholder="请输入您的旧密码！" type='password' size='middle' />
                 </FormItem>
-                <FormItem name='newPwd' label='新密码'>
+                <FormItem name='newPwd' label='新密码' rules={[{required: true, message: '请输入您的新密码！', pattern: /^[0-9A-Za-z]{6,}$/}]}>
                     <Input  placeholder="请输入您的新密码！" type='password' size='middle' />
                 </FormItem>
                 <div className='tc' style={{width: '328px', margin: '0 auto'}}>

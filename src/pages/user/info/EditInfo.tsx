@@ -367,7 +367,7 @@ const Index = () => {
                                 }
                             }]}
                         >
-                            <UploadImg title='上传身份证正面照'/>
+                            <UploadImg title='上传身份证人像面'/>
                         </FormItem>
                     </Col>
                     <Col span={12}>
@@ -390,7 +390,7 @@ const Index = () => {
                             }
                         }]}
                     >
-                        <UploadImg  title='上传身份证反面照' />
+                        <UploadImg  title='上传身份证国徽面' />
                     </FormItem>
                     </Col>
                     </Row>

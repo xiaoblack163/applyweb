@@ -97,9 +97,9 @@ const Index = () => {
                         <FormItem 
                             name='password' 
                             label='密码' 
-                            rules={[{required: true, message: '请输入密码', pattern: /[a-zA-Z]{6,20}$/}]}
+                            rules={[{required: true, message: '请输入6位以上密码', pattern: /^[0-9A-Za-z]{6,}$/}]}
                         >
-                            <Input  type="password" placeholder="请输入密码（6-20个字符）" size='middle' />
+                            <Input  type="password" placeholder="请输入6位以上密码" size='middle' />
                         </FormItem>
                         <FormItem 
                             name='pw2' 

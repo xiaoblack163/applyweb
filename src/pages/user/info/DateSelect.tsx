@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-31 15:23:26
- * @LastEditTime: 2021-12-31 16:40:56
+ * @LastEditTime: 2022-01-04 13:44:55
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /applyweb/src/pages/user/info/DateSelect.tsx
@@ -32,7 +32,7 @@ const Index = ( props ) => {
     const { value={}, onChange} = props
 
     const [state, setState] = useImmer({
-        year: 2022,
+        year: 2021,
         month: 1,
         day: 1
     })
@@ -48,10 +48,15 @@ const Index = ( props ) => {
         
     }
 
+    const getDay = (year, month) => {
+        var d = new Date(year, month, 0);
+        return d.getDate();
+    }
+
     const daysOption = useMemo(() => {
         let days  = 31
         if (state.year && state.month) {
-            days = moment().year(state.year).month(state.month-1).date()
+            days = getDay(state.year, state.month)
         }
         return range(days).map(item => item +1)
     }, [state.year, state.month])
