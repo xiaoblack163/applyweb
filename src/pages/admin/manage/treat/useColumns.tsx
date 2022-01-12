@@ -1,3 +1,10 @@
+/*
+ * @Author: baishijie
+ * @Date: 2021-11-24 00:50:23
+ * @LastEditors: baishijie
+ * @LastEditTime: 2022-01-12 17:48:27
+ * @FilePath: /applyweb/src/pages/admin/manage/treat/useColumns.tsx
+ */
 import React from "react";
 import { Divider, Space, Popover } from 'antd'
 import { Link } from '@friday/router'
@@ -39,7 +46,19 @@ const useColumns = () => {
         }, {
             title: '参赛作品名称',
             dataIndex: 'productName'
-        }, {
+        },  {
+            title: '参赛者学校',
+            dataIndex: 'school'
+        },  {
+            title: '推荐人',
+            dataIndex: 'recommendName'
+        },  {
+            title: '联系电话',
+            dataIndex: 'contact'
+        },  {
+            title: '上传作品时间',
+            dataIndex: 'ctime'
+        },{
             title: '原创性',
             dataIndex: 'itemA'
         },{

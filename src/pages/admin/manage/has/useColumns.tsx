@@ -37,8 +37,17 @@ const useColumns = (revalidate) => {
         },  {
             title: '参赛作品名称',
             dataIndex: 'productName'
+        },{
+            title: '参赛者学校',
+            dataIndex: 'school'
+        },  {
+            title: '推荐人',
+            dataIndex: 'recommendName'
+        },  {
+            title: '上传作品时间',
+            dataIndex: 'ctime'
         }, {
-            title: '参赛者联系电话',
+            title: '联系电话',
             dataIndex: 'contact'
         }, {
             title: '参赛者地址',
