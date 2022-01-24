@@ -201,13 +201,13 @@ const Index = () => {
                             value.some(item => {
                                 const size = get(item, 'originFileObj.size')
                                 const sizeM = size/1024/1024
-                                if (sizeM > 2) {
+                                if (sizeM > 5) {
                                     isCheckSize = true
                                     return true
                                 }
                             })
                             if (isCheckSize) {
-                                return Promise.reject('请上传小于2m的图片');
+                                return Promise.reject('请上传小于5m的图片');
                             }
                             return Promise.resolve();
                         }}
@@ -216,7 +216,7 @@ const Index = () => {
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    <UploadImg title='上传图片' tips='上传格式jpg、png、jpeg，单张图片大小不超过2M，A3尺寸，分辨率300dpi，最多可上传4张图片' />
+                    <UploadImg title='上传图片' tips='上传格式jpg、png、jpeg，单张图片大小不超过5M，A3尺寸，分辨率300dpi，最多可上传4张图片' />
                 </FormItem>
                 <Divider />
                 <FormItem
