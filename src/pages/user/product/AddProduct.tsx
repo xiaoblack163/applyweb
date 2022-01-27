@@ -1,5 +1,5 @@
 import React  from "react";
-import { Form, Input, Row, Col, Radio, Button, DatePicker, Divider, message, PageHeader, Card} from 'antd'
+import { Form, Input, Row, Col, Radio, Button, DatePicker, Divider, message, PageHeader, Card, Modal} from 'antd'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { useHistory, useParams } from '@friday/router'
@@ -8,6 +8,7 @@ import UploadVideo from './UploadVideo'
 import { isEmpty, get } from 'lodash'
 import { useConfiguration } from '@friday/core'
 import cookie from 'js-cookie'
+import ModalPromise from './ModalPromise'
 
 const FormItem = Form.Item
 
@@ -67,6 +68,8 @@ const Index = () => {
 
     const { publicUrl } = useConfiguration()
 
+    const [ visible, setvisible ] = React.useState(false)
+
     React.useEffect(() => {
         if(id == 0) {
             const values = JSON.parse(cookie.get('product') || '{}')
@@ -96,6 +99,12 @@ const Index = () => {
 
     const history = useHistory()
 
+    const onClose = async (refresh?) => {
+        setvisible(false)
+        if (refresh) {
+            await onFinish()
+        }
+    }
     
 
     const onFinish = async () => {
@@ -116,6 +125,11 @@ const Index = () => {
 
     const onValuesChange = (changedValues, allValues) => {
         cookie.set('product', JSON.stringify(allValues))
+    }
+
+    const openModal = async () => {
+        await form.validateFields()
+        setvisible(true)
     }
 
     return (
@@ -288,15 +302,19 @@ const Index = () => {
                 <div className='tc' style={{width: '300px', margin: '0 auto'}}>
                     <Button
                         type="primary"
-                        htmlType="submit"
                         size='middle'
                         block
+                        onClick={openModal}
                     >
                         保存
                     </Button>
                 </div>
             </Form>
             </Card>
+            <ModalPromise 
+                visible={visible}
+                onClose={onClose}
+            />
         </div>
     )
 }
