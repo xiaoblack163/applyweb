@@ -257,6 +257,33 @@ const Index = () => {
                 >
                     <UploadVideo title='上传视频' tips='上传作品说明视频，格式要求MP4、AVI, 文件小于10MB。' />
                 </FormItem>
+                <FormItem
+                    label='投稿作品是否获过奖'
+                    name='award'
+                    initialValue={0}
+                >
+                    <Radio.Group>
+                        <Radio value={0}>否</Radio>
+                        <Radio value={1}>是</Radio>
+                    </Radio.Group>
+                </FormItem>
+                <FormItem
+                    noStyle
+                    shouldUpdate={(prevValues, currentValues) => ( prevValues.award !== currentValues.award )}
+                >
+                    {({ getFieldValue }) => {
+                        const award = getFieldValue('award') 
+                        if (award == 1) return (
+                            <FormItem
+                                label='获奖情况'
+                                rules={[{required: true, message: '请输入获奖情况'}]}
+                                name='awardContent'
+                            >
+                                <Input placeholder='请输入获奖情况' />
+                            </FormItem> 
+                        )
+                    }}
+                </FormItem>
                 <Divider />
                 <FormItem
                     label={'设计主题及作品说明(中文)'}
