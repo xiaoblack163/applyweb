@@ -1,3 +1,10 @@
+/*
+ * @Author: baishijie
+ * @Date: 2021-11-17 17:15:25
+ * @LastEditors: baishijie
+ * @LastEditTime: 2022-02-08 18:31:25
+ * @FilePath: /applyweb/src/pages/admin/manage/treat/index.tsx
+ */
 import React  from "react";
 import { Table, Space, Select, PageHeader, Card } from 'antd'
 import useColumns from './useColumns'
@@ -57,8 +64,8 @@ const Index = () => {
                             </Select>
                         </div> */}
                         <div>
-                            参赛组别： 
-                            <Select style={{width: '140px'}} allowClear placeholder='请选择参赛组别' onChange={(e) => setState(draft => { draft.productType = e as any })}>
+                            参赛类别： 
+                            <Select style={{width: '140px'}} allowClear placeholder='请选择参赛类别' onChange={(e) => setState(draft => { draft.productType = e as any })}>
                                 <Select.Option value={'个人组'}>个人组</Select.Option>
                                 <Select.Option value={'团体组'}>团体组</Select.Option>
                                 <Select.Option value={'企业组'}>企业组</Select.Option>

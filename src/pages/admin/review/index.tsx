@@ -61,8 +61,8 @@ const Index = () => {
             <Alert message= '参赛作品信息' className="m-fix-alert" banner  showIcon={false} />
             <Descriptions bordered  className='mg-t-20 mg-b-20' layout="vertical" size={'small'}>
                 <Descriptions.Item label="作品编号">{get(dataJson, 'id')}</Descriptions.Item>
-                <Descriptions.Item label="参赛类别">{get(dataJson, 'entryDirection')}</Descriptions.Item>
-                <Descriptions.Item label="参赛方向">{get(dataJson, 'productType')}</Descriptions.Item>
+                <Descriptions.Item label="参赛方向">{get(dataJson, 'entryDirection')}</Descriptions.Item>
+                <Descriptions.Item label="参赛类别">{get(dataJson, 'productType')}</Descriptions.Item>
                 <Descriptions.Item label="作品名称(中文)">{get(dataJson, 'productName')}</Descriptions.Item>
                 <Descriptions.Item label="作品名称(英文)" >
                     {get(dataJson, 'productNameEn') || '--'}

@@ -1,3 +1,10 @@
+/*
+ * @Author: baishijie
+ * @Date: 2021-11-17 17:15:25
+ * @LastEditors: baishijie
+ * @LastEditTime: 2022-02-08 18:29:21
+ * @FilePath: /applyweb/src/pages/admin/review/has/index.tsx
+ */
 import React  from "react";
 import { Table, Space, Select, PageHeader, Card } from 'antd'
 import useColumns from './useColumns'
@@ -49,10 +56,10 @@ const Index = () => {
             <div className='clearfix mg-b-20'>
                 <Space>
                     <div>
-                        参赛类别：
+                        参赛方向：
                         <Select style={{width: '140px'}} 
                             allowClear 
-                            placeholder='请选择参赛类别' 
+                            placeholder='请选择参赛方向' 
                             onChange={(e) => setState(dart => { dart.entryDirection = e as any })}
                         >
                             <Select.Option value={'系列服装类'}>系列服装类</Select.Option >
@@ -61,8 +68,8 @@ const Index = () => {
                         </Select>
                     </div>
                     <div className="mg-l-20">
-                        参赛方向： 
-                        <Select style={{width: '140px'}} allowClear placeholder='请选择参赛方向' onChange={(e) => setState(draft => { draft.productType = e as any })}>
+                        参赛类别： 
+                        <Select style={{width: '140px'}} allowClear placeholder='请选择参赛类别' onChange={(e) => setState(draft => { draft.productType = e as any })}>
                             <Select.Option value={'个人组'}>个人组</Select.Option>
                             <Select.Option value={'团体组'}>团体组</Select.Option>
                             <Select.Option value={'企业组'}>企业组</Select.Option>
