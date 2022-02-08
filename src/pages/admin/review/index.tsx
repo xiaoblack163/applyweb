@@ -3,7 +3,7 @@ import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image, Spa
 import { useApiSelector } from 'src/hooks'
 import { useParams, useHistory } from '@friday/router'
 import { dispatchAsync, useRequest } from '@friday/async'
-import { isEmpty, get } from 'lodash'
+import { isEmpty, get, isNumber, pick, omit } from 'lodash'
 import { useConfiguration } from '@friday/core'
 import ModalVideo from './ModalVideo'
 import './style.less'
@@ -184,7 +184,7 @@ const Index = () => {
                     shouldUpdate={true}
                 >
                     {({ getFieldsValue }) => {
-                        const values = Object.values(getFieldsValue()).filter(item => item) as any
+                        const values = Object.values(omit(getFieldsValue(), 'comment')).filter(item => item) as any
                         const sum = values.reduce((pre, cur) => {
                             pre = Number(pre) + Number(cur)
                             return pre
