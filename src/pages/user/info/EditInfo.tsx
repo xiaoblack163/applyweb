@@ -342,7 +342,7 @@ const Index = () => {
                     <Input />
                 </FormItem>
                 <FormItem
-                    label={<FormLabel name='上传身份证' en='ID Card Copy'  />}
+                    label={<FormLabel name='上传身份证' en='ID Card Copy' required  />}
                     className='m-info-card'
                     style={{marginBottom: 0}}
                 >
@@ -355,9 +355,9 @@ const Index = () => {
                             getValueFromEvent={normFile}
                             style={{marginBottom: 0}}
                             rules={[{
-                                required: false, 
+                                required: true, 
                                 validator: (_, value) => {
-                                    if (isEmpty(value)) return Promise.resolve();
+                                    if (isEmpty(value)) return Promise.reject('请上传身份证人像面');
                                     const size = get(value, '[0].originFileObj.size')
                                     const sizeM = size/1024/1024
                                     if (sizeM > 2) {
@@ -378,9 +378,9 @@ const Index = () => {
                         getValueFromEvent={normFile}
                         style={{marginBottom: 0}}
                         rules={[{
-                            required: false, 
+                            required: true, 
                             validator: (_, value) => {
-                                if (isEmpty(value)) return Promise.resolve();
+                                if (isEmpty(value)) return Promise.reject('请上传身份证国徽面');
                                 const size = get(value, '[0].originFileObj.size')
                                 const sizeM = size/1024/1024
                                 if (sizeM > 2) {
