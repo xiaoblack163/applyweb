@@ -12,13 +12,21 @@ import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
 import { useImmer }  from '@friday/immer'
-
+import cookie from 'js-cookie'
 
 
 const Index = () => {
 
     const apis = useApiSelector()
 
+    const cPage = cookie.get('pageA') || 1
+
+    const [page, changePage] = React.useState(Number(cPage))
+
+    const pageChange = (page) => {
+        changePage(page)
+        cookie.set('pageA', page)
+    }
     
 
     const gatList = (arr, filterObj) => {
@@ -82,6 +90,10 @@ const Index = () => {
                 dataSource={list}
                 scroll={{
                     x: 'max-content'
+                }}
+                pagination={{
+                    current: page,
+                    onChange: (page) => pageChange(page),
                 }}
                 size={'middle'}
                 loading={isValidating}

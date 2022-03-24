@@ -12,6 +12,7 @@ import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
 import { useImmer }  from '@friday/immer'
+import cookie from 'js-cookie'
 
 
 
@@ -20,6 +21,16 @@ const Index = () => {
     const apis = useApiSelector()
 
     const columns = useColumns()
+
+    const cPage = cookie.get('page') || 1
+
+    const [page, changePage] = React.useState(Number(cPage))
+
+    const pageChange = (page) => {
+        changePage(page)
+        cookie.set('page', page)
+    }
+    
 
     const gatList = (arr, filterObj) => {
         if (isEmpty(arr)) return []
@@ -81,6 +92,10 @@ const Index = () => {
                 size={'middle'}
                 scroll={{
                     x: 'max-content'
+                }}
+                pagination={{
+                    current: page,
+                    onChange: (page) => pageChange(page)
                 }}
                 loading={isValidating}
                 rowKey={'id'}
