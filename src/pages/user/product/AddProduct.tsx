@@ -205,6 +205,14 @@ const Index = () => {
                     <Input placeholder='请输入指导教师姓名，最多2人' />
                 </FormItem>
                 <Divider />
+                <FormItem
+                    label={'团队组参赛成员'}
+                    rules={[{required: false, message: '请输入参赛团队成员姓名，最多4人'}]}
+                    name='teamContestants'
+                >
+                    <Input placeholder='请输入参赛团队成员姓名，最多4人' />
+                </FormItem>
+                <Divider />
 
                 <FormItem
                     label={'作品图片'}
