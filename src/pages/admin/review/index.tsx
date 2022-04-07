@@ -202,7 +202,7 @@ const Index = () => {
                 </FormItem>
                 <FormItem
                     label={'评委点评'}
-                    rules={[{required: true, message: '请输入您的点评'}]}
+                    rules={[{required: false, message: '请输入您的点评'}]}
                     name='comment'
                     
                 >
