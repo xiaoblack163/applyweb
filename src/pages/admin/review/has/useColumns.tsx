@@ -37,6 +37,8 @@ const useColumns = (revalidate) => {
         }, {
             title: '分数',
             dataIndex: 'sum',
+            defaultSortOrder: 'descend',
+            sorter: (a, b) => a.sum - b.sum,
         }, {
             title: '操作',
             dataIndex: 'opr',

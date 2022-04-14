@@ -6,7 +6,7 @@
  * @FilePath: /applyweb/src/pages/admin/manage/treat/index.tsx
  */
 import React  from "react";
-import { Table, Space, Select, PageHeader, Card } from 'antd'
+import { Table, Space, Select, PageHeader, Card, Button } from 'antd'
 import useColumns from './useColumns'
 import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
@@ -19,7 +19,7 @@ const Index = () => {
 
     const apis = useApiSelector()
 
-    const columns = useColumns()
+   
 
     const gatList = (arr, filterObj) => {
         if (isEmpty(arr)) return []
@@ -32,14 +32,19 @@ const Index = () => {
     const [state, setState] = useImmer({
         scoring:false,
         productType: '',
-        entryDirection: ''
+        entryDirection: '',
+        selectkeys: []
     })
 
-    const {dataArray, isValidating} = useRequest(apis.admin.manageList({type: 0}))
+    const {dataArray, isValidating, revalidate} = useRequest(apis.admin.manageList({type: 0}))
+
+    const columns = useColumns(revalidate)
 
     const list = gatList(dataArray, state)
 
-
+    const onChange = (keys) => {
+        setState(dart => {dart.selectkeys = keys})
+    }
 
     return (
         <div>
@@ -71,6 +76,9 @@ const Index = () => {
                                 <Select.Option value={'企业组'}>企业组</Select.Option>
                             </Select>
                         </div>
+                        {state.selectkeys.length > 0 && 
+                            <Button>导出图片</Button>
+                        }
                     </Space>
                 </div>
                 <Table 

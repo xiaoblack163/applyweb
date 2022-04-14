@@ -6,18 +6,37 @@
  * @FilePath: /applyweb/src/pages/admin/manage/treat/useColumns.tsx
  */
 import React from "react";
-import { Divider, Space, Popover } from 'antd'
+import { Divider, Space, Popover, Switch, message } from 'antd'
 import { Link } from '@friday/router'
 import { get } from 'lodash'
 import { useConfiguration } from '@friday/core'
+import { dispatchAsync } from '@friday/async'
+import { useApiSelector } from 'src/hooks'
 
 
-const useColumns = () => {
+const useColumns = (refresh) => {
 
     const { publicUrl } = useConfiguration()
 
+    const apis = useApiSelector()
+
+    const onChange = async (text, id) => {
+        const { error } =await  dispatchAsync(apis.admin.updateShow({show: !text, id})) 
+        if (error) return 
+        message.success('更新成功')
+        refresh()
+    }
+
     return React.useMemo(() => {
-        const columns = [{
+        const columns = [
+            {
+                title: '是否展示',
+                dataIndex: 'show',
+                render: (text, record) => {
+                   return <Switch checkedChildren="显示" unCheckedChildren="隐藏" checked={text} onChange={() => onChange(text, record.id)} />
+                }
+            },
+        {
             title: '参赛作品编号',
             dataIndex: 'id'
         }, 
@@ -82,6 +101,21 @@ const useColumns = () => {
         },{
             title: '总分',
             dataIndex: 'sum'
+        },{
+            title: '操作',
+            dataIndex: 'opr',
+            fixed: 'right',
+            render: (text, record) => {
+                return (
+                    <Space split={<Divider type="vertical" />} >  
+                        <span className='operation'>
+                            <Link to={`/admin/manage/${record.id}`}>
+                                查看作品详情
+                            </Link >
+                        </span>
+                    </Space>
+                )
+            }
         }]
     
         return columns

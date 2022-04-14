@@ -37,5 +37,13 @@ export default class Apis {
     // 查看评分详细
     public manageInfo = createGetApi({ url: `${this.admin_config}/signupScoringInfo/query`})
 
+    // 是否展示
+    public updateShow =  createGetApi({ url: `${this.admin_config}/signInfo/show/update`})
+    
+    // 批量导出图片
+    public bathToImg = createGetApi({ url: `${this.admin_config}/signInfo/export/pics`, responseType: 'blob'})
+
+    // 单个导出图片
+    public singleToimg = createGetApi({ url: `${this.admin_config}/signInfo/export/pic`})
 }
 

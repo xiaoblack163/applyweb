@@ -31,7 +31,8 @@ const Index = () => {
     const [state, setState] = useImmer({
         scoring:true,
         productType: '',
-        entryDirection: ''
+        entryDirection: '',
+        selectkeys: []
     })
 
     const {dataArray, isValidating, revalidate} = useRequest(apis.admin.manageList({type: 1}))
@@ -47,6 +48,16 @@ const Index = () => {
         message.success('导出成功')
     }
 
+    const onChange = (keys) => {
+        setState(dart => {dart.selectkeys = keys})
+    }
+
+    const SaveToImg = async () => {
+        const { responseBlob } = await dispatchAsync(apis.admin.bathToImg({ids: state.selectkeys.join(',')}))
+        const downInstance = new DownloadService()
+        downInstance.donwloadfn(responseBlob, '作品图片.zip')
+        message.success('导出成功')
+    }
 
 
     return (
@@ -79,6 +90,9 @@ const Index = () => {
                                 <Select.Option value={'企业组'}>企业组</Select.Option>
                             </Select>
                         </div>
+                        {state.selectkeys.length > 0 && 
+                            <Button onClick={SaveToImg} type='primary'>导出图片</Button>
+                        }
                     </Space>
                     <div className='fr'>
                         <Button onClick={download}>导出列表</Button>
@@ -92,6 +106,11 @@ const Index = () => {
                     }}
                     loading={isValidating}
                     rowKey={'id'}
+                    rowSelection={{
+                        onChange: onChange,
+                        selectedRowKeys: state.selectkeys
+                    }}
+                       
                 />
             </Card>
         </div>

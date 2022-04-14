@@ -11,6 +11,8 @@ import ManageTreat from '../manage/treat'
 import Review from '../review/index'
 import Manage from '../manage/index'
 
+import details from '../manage/details'
+
 const PrimaryRoutes = () => {
     const match = useRouteMatch()
     useScrollTop()
@@ -22,6 +24,7 @@ const PrimaryRoutes = () => {
             <Route path={`${match.path}/review/:id/:type`} exact component={Review} />
             <Route path={`${match.path}/managehas`} component={ManageHas} />
             <Route path={`${match.path}/managetreat`} component={ManageTreat} />
+            <Route path={`${match.path}/manage/:id`} exact component={details} />
             <Route path={`${match.path}/manage/:id/:type`} exact component={Manage} />
         </BaseLayout>
     )

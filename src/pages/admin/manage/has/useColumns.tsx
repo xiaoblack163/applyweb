@@ -88,7 +88,12 @@ const useColumns = (revalidate) => {
                     <Space split={<Divider type="vertical" />} >  
                         <span className='operation'>
                             <Link to={`/admin/manage/${record.id}/score`}>
-                                查看详情
+                                查看评分详情
+                            </Link >
+                        </span>
+                        <span className='operation'>
+                            <Link to={`/admin/manage/${record.id}`}>
+                                查看作品详情
                             </Link >
                         </span>
                     </Space>
