@@ -133,12 +133,10 @@ const Index = () => {
                             {imgList.map((item, index) => {
                                 return (
                                     <>
-                                        <img
+                                        <Image
                                             width={300}
                                             key={index}
-                                            src={`${publicUrl.OPEN_IMG_URL + item}`}
-                                            // src={`http://0.0.0.0:9005/server/transferImage?path=${publicUrl.OPEN_IMG_URL + item}`}
-                                            // crossOrigin='anonymous'
+                                            src={publicUrl.OPEN_IMG_URL + item}
                                         />
                                     </>
                                 )
