@@ -13,12 +13,21 @@ import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
 import { useImmer }  from '@friday/immer'
 import DownloadService from 'src/services/downloadService'
-
+import cookie from 'js-cookie'
 
 
 const Index = () => {
 
     const apis = useApiSelector()
+
+    const cPage = cookie.get('page2') || 1
+
+    const [page, changePage] = React.useState(Number(cPage))
+
+    const pageChange = (page) => {
+        changePage(page)
+        cookie.set('page2', page)
+    }
 
     const gatList = (arr, filterObj) => {
         if (isEmpty(arr)) return []
@@ -109,6 +118,10 @@ const Index = () => {
                     rowSelection={{
                         onChange: onChange,
                         selectedRowKeys: state.selectkeys
+                    }}
+                    pagination={{
+                        current: page,
+                        onChange: (page) => pageChange(page)
                     }}
                        
                 />

@@ -12,14 +12,21 @@ import { useApiSelector } from 'src/hooks'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get } from 'lodash'
 import { useImmer }  from '@friday/immer'
-
+import cookie from 'js-cookie'
 
 
 const Index = () => {
 
     const apis = useApiSelector()
 
-   
+    const cPage = cookie.get('page3') || 1
+
+    const [page, changePage] = React.useState(Number(cPage))
+
+    const pageChange = (page) => {
+        changePage(page)
+        cookie.set('page3', page)
+    }
 
     const gatList = (arr, filterObj) => {
         if (isEmpty(arr)) return []
@@ -89,6 +96,11 @@ const Index = () => {
                     }}
                     loading={isValidating}
                     rowKey={'id'}
+                    pagination={{
+                        current: page,
+                        pageSize:1,
+                        onChange: (page) => pageChange(page)
+                    }}
                 />
             </Card>
         </div>
