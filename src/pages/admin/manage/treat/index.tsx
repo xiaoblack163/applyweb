@@ -98,7 +98,6 @@ const Index = () => {
                     rowKey={'id'}
                     pagination={{
                         current: page,
-                        pageSize:1,
                         onChange: (page) => pageChange(page)
                     }}
                 />
