@@ -11,9 +11,9 @@ const isBlob = target => {
 export default class DownloadService {
     donwloadfn (response, name) {
         const aTag: any = document.createElement("a")
-        if (!isBlob(response)) {
-            return message.warn('文件格式不对')
-        }
+        // if (!isBlob(response)) {
+        //     return message.warn('文件格式不对')
+        // }
         const url = window.URL.createObjectURL(response)
         document.body.appendChild(aTag)
         aTag.style = "display: none"
