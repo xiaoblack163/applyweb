@@ -102,7 +102,9 @@ const Index = () => {
         //     resolve(0)
         //   })
         // })
+        const hide =  message.loading('正在导出，请稍等', 0)
         const { data } = await dispatchAsync(apis.admin.singleToimg({id: id}))
+        hide()
         downloadFile(data, `${name}.png`)
         message.success('导出成功')
       }

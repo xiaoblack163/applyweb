@@ -62,7 +62,9 @@ const Index = () => {
     }
 
     const SaveToImg = async () => {
+        const hide =  message.loading('正在导出，请稍等', 0)
         const { responseBlob } = await dispatchAsync(apis.admin.bathToImg({ids: state.selectkeys.join(',')}))
+        hide()    
         const downInstance = new DownloadService()
         downInstance.donwloadfn(responseBlob, '作品图片.zip')
         message.success('导出成功')
