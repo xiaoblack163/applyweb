@@ -16,6 +16,7 @@ export const axiosConifg = {
 	}
 }
 
+
 const errorNotice = debounce((text, response?) => {
 	message.error(text)
 	// sentry 上报
