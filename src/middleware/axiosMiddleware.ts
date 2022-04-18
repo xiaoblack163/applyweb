@@ -9,7 +9,7 @@ const { publicUrl, history } = getConfiguration()
 
 export const axiosConifg = {
 	baseURL: publicUrl.OPEN_API_URL,
-	timeout: 20000,
+	timeout: 600000,
 	headers: {
 		'Accept': 'application/json;charset=utf-8',
 		'Content-Type': 'application/json;charset=utf-8',
