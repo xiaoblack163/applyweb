@@ -1,7 +1,7 @@
 import React, { useRef }  from "react";
 import { Input, Alert, Descriptions, Form, Button, Row, Col, message, Image, Space, PageHeader, Card} from 'antd'
 import { useApiSelector } from 'src/hooks'
-import { useParams, useHistory } from '@friday/router'
+import { useParams, useHistory, useLocation } from '@friday/router'
 import { dispatchAsync, useRequest } from '@friday/async'
 import { isEmpty, get, isNumber, pick, omit,random } from 'lodash'
 import { useConfiguration } from '@friday/core'
@@ -49,6 +49,10 @@ const Index = () => {
     const apis = useApiSelector()
 
     const [ form ] = Form.useForm()
+
+    const { state } = useLocation()
+
+    console.log()
 
     const { id } = useParams() as any
 
@@ -130,6 +134,15 @@ const Index = () => {
                     <Descriptions.Item label="推荐人">
                         {get(dataJson, 'recommendName') || '--'}
                     </Descriptions.Item>
+                    {/*  */}
+                    <Descriptions.Item label="参赛者姓名">{get(state, 'name')}</Descriptions.Item>
+                    <Descriptions.Item label="学校" >
+                        {get(state, 'school') || '--'}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="联系电话">
+                        {get(state, 'contact') || '--'}
+                    </Descriptions.Item>
+                    {/*  */}
                     <Descriptions.Item label="作品图片" span={3}>
                         <div className="m-details">
                             {imgList.map((item, index) => {

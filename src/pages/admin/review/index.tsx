@@ -67,9 +67,12 @@ const Index = () => {
                 <Descriptions.Item label="作品名称(英文)" >
                     {get(dataJson, 'productNameEn') || '--'}
                 </Descriptions.Item>
-                <Descriptions.Item label="推荐人">
+                <Descriptions.Item label="">
+                    
+                </Descriptions.Item> 
+                {/* <Descriptions.Item label="推荐人">
                     {get(dataJson, 'recommendName') || '--'}
-                </Descriptions.Item>
+                </Descriptions.Item> */}
                 <Descriptions.Item label="作品图片" span={3}>
                     <Image.PreviewGroup>
                         {imgList.map((item, index) => {

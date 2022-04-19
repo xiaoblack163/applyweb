@@ -109,7 +109,11 @@ const useColumns = (refresh) => {
                 return (
                     <Space split={<Divider type="vertical" />} >  
                         <span className='operation'>
-                            <Link to={`/admin/manage/${record.id}`}>
+                            <Link to={{pathname: `/admin/manage/${record.id}`, state: {
+                                name: record.name,
+                                school: record.school,
+                                contact: record.contact
+                            }}}>
                                 查看作品详情
                             </Link >
                         </span>
